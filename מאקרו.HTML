@@ -1,0 +1,2917 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>מילון פקודות מקרו</title>
+  <style>
+    body {
+      font-family: Arial, Tahoma, "Segoe UI", sans-serif;
+      margin: 24px;
+      background: #f8f9fb;
+      color: #222;
+    }
+    h1 {
+      margin-bottom: 12px;
+      font-size: 1.6rem;
+    }
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .toolbar input, .toolbar select, .toolbar button {
+      padding: 8px 10px;
+      font-size: 0.95rem;
+      border: 1px solid #ccd;
+      border-radius: 6px;
+      background: #fff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid #e3e6eb;
+    }
+    thead th {
+      background: #f1f3f7;
+      color: #333;
+      font-weight: 600;
+      text-align: right; /* RTL */
+      padding: 10px;
+      border-bottom: 1px solid #e3e6eb;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    tbody td {
+      padding: 10px;
+      border-bottom: 1px solid #f0f2f6;
+      vertical-align: top;
+    }
+    tbody tr:nth-child(odd) {
+      background: #fafbfe;
+    }
+    .cmd {
+      font-family: "Courier New", Consolas, monospace;
+      color: #0a5;
+      font-weight: 600;
+    }
+    .desc {
+      color: #555;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border: 1px solid #d7e0ea;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: #f7fafc;
+      color: #3a4a5a;
+      margin-inline-start: 6px; /* RTL-safe spacing */
+    }
+    .count {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .highlight {
+      background: #fff7cc;
+      transition: background 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+  <h1>מילון פקודות מקרו</h1>
+
+  <div class="toolbar">
+    <input id="search" type="text" placeholder="חיפוש לפי פקודה / תרגום / פירוש..." />
+    <select id="category">
+      <option value="">כל הקטגוריות</option>
+      <option value="file">קבצים</option>
+      <option value="edit">עריכה</option>
+      <option value="run">הרצה</option>
+      <option value="debug">ניפוי</option>
+  <option value="data">נתונים</option>
+  <option value="math">מתמטיקה</option>
+  <option value="text">טקסט</option>
+  <option value="chart">גרפים</option>
+  <option value="logic">לוגיקה</option>
+  <option value="datetime">תאריכים וזמן</option>
+  <option value="array">מערכים ורשימות</option>
+  <option value="network">אינטרנט ורשת</option>
+  <option value="io">קלט/פלט</option>
+  <option value="user">משתמשים והרשאות</option>
+<option value="filesystem">מערכת קבצים</option>
+<option value="system">שליטה במערכת</option>
+<option value="security">אבטחה</option>
+<option value="memory">זיכרון ומשתנים</option>
+<option value="function">פונקציות</option>
+<option value="loop">לולאות</option>
+<option value="error">שגיאות וחריגות</option>
+<option value="ui">גרפיקה וממשק משתמש</option>
+<option value="media">מדיה</option>
+<option value="api">מערכות חיצוניות / API</option>
+<option value="hardware">חיישנים וחומרה</option>
+<option value="ai">בינה מלאכותית ולמידת מכונה</option>
+<option value="messaging">תקשורת</option>
+<option value="cloud">ענן</option>
+<option value="datafiles">קבצי נתונים</option>
+<option value="os">מערכת הפעלה</option>
+<option value="schedule">תזמון</option>
+<option value="cache">זיכרון מטמון</option>
+<option value="testing">בדיקות</option>
+<option value="automation">אוטומציה</option>
+<option value="database">מסדי נתונים</option>
+<option value="version">ניהול גרסאות</option>
+<option value="networking-adv">רשתות מתקדמות</option>
+<option value="security-adv">אבטחת מידע מתקדמת</option>
+<option value="graphics-adv">גרפיקה מתקדמת</option>
+<option value="mobile">מערכות ניידות</option>
+<option value="robotics">רובוטיקה</option>
+<option value="iot">אינטרנט של הדברים (IoT)</option>
+<option value="analytics">אנליטיקה וסטטיסטיקה</option>
+<option value="devops">DevOps</option>
+<option value="blockchain">בלוקצ'יין</option>
+<option value="vrar">מציאות מדומה/רבודה (VR/AR)</option>
+<option value="game">משחקים</option>
+<option value="smarthome">בית חכם</option>
+<option value="transportation">תחבורה חכמה</option>
+<option value="health">בריאות דיגיטלית</option>
+<option value="energy">אנרגיה חכמה</option>
+<option value="education">חינוך דיגיטלי</option>
+<option value="ecommerce">מסחר אלקטרוני</option>
+<option value="digitalart">אמנות דיגיטלית</option>
+<option value="music">מוזיקה</option>
+<option value="film">קולנוע ווידאו</option>
+<option value="sports">ספורט וכושר</option>
+<option value="cooking">אוכל ובישול</option>
+<option value="social">תקשורת חברתית</option>
+<option value="marketing">שיווק ופרסום</option>
+<option value="legal">משפט וחוק</option>
+<option value="science">מדע וטכנולוגיה</option>
+<option value="space">חלל ואסטרונומיה</option>
+<option value="environment">סביבה ואקולוגיה</option>
+<option value="word">Microsoft Word</option>
+
+
+      <!-- אפשר להוסיף קטגוריות נוספות -->
+    </select>
+    <button id="clear">ניקוי חיפוש</button>
+  </div>
+
+  <!-- שמירה על סדר העמודות: ימין -> שמאל -->
+  <!-- ימין: מילים באנגלית (פקודה), אמצעי: התרגום לעברית, שמאל: פירוש קצר -->
+  <table id="dict">
+    <thead>
+      <tr>
+        <th>פקודה באנגלית</th>
+        <th>תרגום לעברית</th>
+        <th>פירוש קצר</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- דוגמאות בסיס (נחליף ונרחיב לפי השפה/המערכת שלך) -->
+      <tr data-cat="file">
+        <td class="cmd">Open</td>
+        <td>פתח</td>
+        <td class="desc">פותח קובץ או משאב לפי נתיב/שם.</td>
+      </tr>
+      <tr data-cat="file">
+        <td class="cmd">Save</td>
+        <td>שמור</td>
+        <td class="desc">שומר את השינויים במסמך או בתצורה.</td>
+      </tr>
+      <tr data-cat="edit">
+        <td class="cmd">Copy</td>
+        <td>העתק</td>
+        <td class="desc">מעתיק את הבחירה ללוח.</td>
+      </tr>
+      <tr data-cat="edit">
+        <td class="cmd">Paste</td>
+        <td>הדבק</td>
+        <td class="desc">מדביק תוכן מהלוח אל המקום הנוכחי.</td>
+      </tr>
+      <tr data-cat="run">
+        <td class="cmd">Run</td>
+        <td>הרץ</td>
+        <td class="desc">מבצע את הסקריפט/מקרו הפעיל.</td>
+      </tr>
+      <tr data-cat="debug">
+        <td class="cmd">Break</td>
+        <td>עצור נקודתית</td>
+        <td class="desc">עוצר ביצוע בנקודת עצירה לצורך בדיקה.</td>
+      </tr>
+<tr data-cat="file">
+  <td class="cmd">New</td>
+  <td>חדש</td>
+  <td class="desc">יוצר קובץ או מסמך חדש.</td>
+</tr>
+<tr data-cat="file">
+  <td class="cmd">Close</td>
+  <td>סגור</td>
+  <td class="desc">סוגר את הקובץ או החלון הפעיל.</td>
+</tr>
+<tr data-cat="file">
+  <td class="cmd">Delete</td>
+  <td>מחק</td>
+  <td class="desc">מוחק קובץ או פריט נבחר.</td>
+</tr>
+<tr data-cat="file">
+  <td class="cmd">Export</td>
+  <td>ייצא</td>
+  <td class="desc">שומר או ממיר את הקובץ לפורמט אחר.</td>
+</tr>
+<tr data-cat="edit">
+  <td class="cmd">Cut</td>
+  <td>גזור</td>
+  <td class="desc">מסיר את הבחירה ומעתיק אותה ללוח.</td>
+</tr>
+<tr data-cat="edit">
+  <td class="cmd">Undo</td>
+  <td>בטל</td>
+  <td class="desc">מחזיר את הפעולה האחרונה לאחור.</td>
+</tr>
+<tr data-cat="edit">
+  <td class="cmd">Redo</td>
+  <td>בצע שוב</td>
+  <td class="desc">משחזר פעולה שבוטלה.</td>
+</tr>
+<tr data-cat="edit">
+  <td class="cmd">Find</td>
+  <td>חפש</td>
+  <td class="desc">מחפש טקסט או פריט במסמך.</td>
+</tr>
+<tr data-cat="edit">
+  <td class="cmd">Replace</td>
+  <td>החלף</td>
+  <td class="desc">מחליף טקסט שנמצא בטקסט אחר.</td>
+</tr>
+<tr data-cat="run">
+  <td class="cmd">Start</td>
+  <td>התחל</td>
+  <td class="desc">מתחיל תהליך או מקרו.</td>
+</tr>
+<tr data-cat="run">
+  <td class="cmd">Stop</td>
+  <td>עצור</td>
+  <td class="desc">מסיים את התהליך או המקרו.</td>
+</tr>
+<tr data-cat="run">
+  <td class="cmd">Pause</td>
+  <td>השהה</td>
+  <td class="desc">עוצר זמנית את ההרצה.</td>
+</tr>
+<tr data-cat="run">
+  <td class="cmd">Resume</td>
+  <td>המשך</td>
+  <td class="desc">ממשיך תהליך שהושהה.</td>
+</tr>
+<tr data-cat="debug">
+  <td class="cmd">Step</td>
+  <td>צעד</td>
+  <td class="desc">מבצע פקודה אחת בכל פעם כדי לבדוק.</td>
+</tr>
+<tr data-cat="debug">
+  <td class="cmd">Continue</td>
+  <td>המשך</td>
+  <td class="desc">ממשיך ריצה אחרי עצירה.</td>
+</tr>
+<tr data-cat="debug">
+  <td class="cmd">Watch</td>
+  <td>מעקב</td>
+  <td class="desc">מציג ערכים של משתנים בזמן הריצה.</td>
+</tr>
+<tr data-cat="debug">
+  <td class="cmd">Error</td>
+  <td>שגיאה</td>
+  <td class="desc">מציין בעיה או תקלה בקוד.</td>
+</tr>
+<tr data-cat="data">
+  <td class="cmd">Sort</td>
+  <td>מיין</td>
+  <td class="desc">מסדר נתונים לפי סדר עולה או יורד.</td>
+</tr>
+<tr data-cat="data">
+  <td class="cmd">Filter</td>
+  <td>סנן</td>
+  <td class="desc">מציג רק נתונים שעומדים בתנאי מסוים.</td>
+</tr>
+<tr data-cat="data">
+  <td class="cmd">Calculate</td>
+  <td>חשב</td>
+  <td class="desc">מבצע פעולה מתמטית או פונקציה.</td>
+</tr>
+<tr data-cat="data">
+  <td class="cmd">Sum</td>
+  <td>סכום</td>
+  <td class="desc">מחבר ערכים יחד.</td>
+</tr>
+<tr data-cat="data">
+  <td class="cmd">Average</td>
+  <td>ממוצע</td>
+  <td class="desc">מחשב את הערך הממוצע של קבוצת נתונים.</td>
+</tr>
+<tr data-cat="math">
+  <td class="cmd">Add</td>
+  <td>הוסף</td>
+  <td class="desc">מחבר שני מספרים או יותר.</td>
+</tr>
+<tr data-cat="math">
+  <td class="cmd">Subtract</td>
+  <td>חסר</td>
+  <td class="desc">מחסיר מספר אחד מהשני.</td>
+</tr>
+<tr data-cat="math">
+  <td class="cmd">Multiply</td>
+  <td>כפל</td>
+  <td class="desc">מכפיל מספרים יחד.</td>
+</tr>
+<tr data-cat="math">
+  <td class="cmd">Divide</td>
+  <td>חלק</td>
+  <td class="desc">מחלק מספר אחד בשני.</td>
+</tr>
+<tr data-cat="math">
+  <td class="cmd">Round</td>
+  <td>עגל</td>
+  <td class="desc">מעגל מספר לערך קרוב.</td>
+</tr>
+<tr data-cat="math">
+  <td class="cmd">Power</td>
+  <td>חזקה</td>
+  <td class="desc">מעלה מספר בחזקה.</td>
+</tr>
+<tr data-cat="math">
+  <td class="cmd">Sqrt</td>
+  <td>שורש</td>
+  <td class="desc">מחשב שורש ריבועי של מספר.</td>
+</tr>
+<tr data-cat="text">
+  <td class="cmd">Trim</td>
+  <td>קצץ</td>
+  <td class="desc">מסיר רווחים מיותרים מתחילת וסוף טקסט.</td>
+</tr>
+<tr data-cat="text">
+  <td class="cmd">Uppercase</td>
+  <td>אותיות גדולות</td>
+  <td class="desc">ממיר טקסט לאותיות גדולות.</td>
+</tr>
+<tr data-cat="text">
+  <td class="cmd">Lowercase</td>
+  <td>אותיות קטנות</td>
+  <td class="desc">ממיר טקסט לאותיות קטנות.</td>
+</tr>
+<tr data-cat="text">
+  <td class="cmd">Concat</td>
+  <td>שרשר</td>
+  <td class="desc">מחבר כמה מחרוזות לטקסט אחד.</td>
+</tr>
+<tr data-cat="text">
+  <td class="cmd">Length</td>
+  <td>אורך</td>
+  <td class="desc">מחזיר את מספר התווים בטקסט.</td>
+</tr>
+<tr data-cat="text">
+  <td class="cmd">Replace</td>
+  <td>החלף</td>
+  <td class="desc">מחליף חלק מטקסט בטקסט אחר.</td>
+</tr>
+<tr data-cat="text">
+  <td class="cmd">Substring</td>
+  <td>תת־מחרוזת</td>
+  <td class="desc">מחזיר חלק מטקסט לפי מיקום.</td>
+</tr>
+<tr data-cat="chart">
+  <td class="cmd">Plot</td>
+  <td>שרטט</td>
+  <td class="desc">יוצר גרף נתונים בסיסי.</td>
+</tr>
+<tr data-cat="chart">
+  <td class="cmd">BarChart</td>
+  <td>תרשים עמודות</td>
+  <td class="desc">מציג נתונים כעמודות.</td>
+</tr>
+<tr data-cat="chart">
+  <td class="cmd">LineChart</td>
+  <td>תרשים קו</td>
+  <td class="desc">מציג נתונים בקו רציף.</td>
+</tr>
+<tr data-cat="chart">
+  <td class="cmd">PieChart</td>
+  <td>תרשים עוגה</td>
+  <td class="desc">מציג נתונים בחלוקה יחסית.</td>
+</tr>
+<tr data-cat="chart">
+  <td class="cmd">Histogram</td>
+  <td>היסטוגרמה</td>
+  <td class="desc">מציג התפלגות ערכים.</td>
+</tr>
+<tr data-cat="logic">
+  <td class="cmd">If</td>
+  <td>אם</td>
+  <td class="desc">מבצע פעולה אם תנאי מתקיים.</td>
+</tr>
+<tr data-cat="logic">
+  <td class="cmd">Else</td>
+  <td>אחרת</td>
+  <td class="desc">מבצע פעולה אחרת אם התנאי לא מתקיים.</td>
+</tr>
+<tr data-cat="logic">
+  <td class="cmd">And</td>
+  <td>וגם</td>
+  <td class="desc">בודק אם שני תנאים נכונים.</td>
+</tr>
+<tr data-cat="logic">
+  <td class="cmd">Or</td>
+  <td>או</td>
+  <td class="desc">בודק אם לפחות תנאי אחד נכון.</td>
+</tr>
+<tr data-cat="logic">
+  <td class="cmd">Not</td>
+  <td>לא</td>
+  <td class="desc">הופך תנאי לנגדי.</td>
+</tr>
+<tr data-cat="logic">
+  <td class="cmd">True</td>
+  <td>נכון</td>
+  <td class="desc">ערך בוליאני המציין אמת.</td>
+</tr>
+<tr data-cat="logic">
+  <td class="cmd">False</td>
+  <td>שקר</td>
+  <td class="desc">ערך בוליאני המציין לא נכון.</td>
+</tr>
+<tr data-cat="datetime">
+  <td class="cmd">Date</td>
+  <td>תאריך</td>
+  <td class="desc">מחזיר את התאריך הנוכחי.</td>
+</tr>
+<tr data-cat="datetime">
+  <td class="cmd">Time</td>
+  <td>שעה</td>
+  <td class="desc">מחזיר את השעה הנוכחית.</td>
+</tr>
+<tr data-cat="datetime">
+  <td class="cmd">Now</td>
+  <td>עכשיו</td>
+  <td class="desc">מחזיר את התאריך והשעה הנוכחיים.</td>
+</tr>
+<tr data-cat="datetime">
+  <td class="cmd">Day</td>
+  <td>יום</td>
+  <td class="desc">מחזיר את היום בחודש מתוך תאריך.</td>
+</tr>
+<tr data-cat="datetime">
+  <td class="cmd">Month</td>
+  <td>חודש</td>
+  <td class="desc">מחזיר את מספר החודש מתוך תאריך.</td>
+</tr>
+<tr data-cat="datetime">
+  <td class="cmd">Year</td>
+  <td>שנה</td>
+  <td class="desc">מחזיר את השנה מתוך תאריך.</td>
+</tr>
+<tr data-cat="datetime">
+  <td class="cmd">FormatDate</td>
+  <td>פורמט תאריך</td>
+  <td class="desc">מציג תאריך בפורמט מותאם אישית.</td>
+</tr>
+<tr data-cat="datetime">
+  <td class="cmd">AddDays</td>
+  <td>הוסף ימים</td>
+  <td class="desc">מוסיף מספר ימים לתאריך נתון.</td>
+</tr>
+<tr data-cat="datetime">
+  <td class="cmd">Diff</td>
+  <td>הפרש</td>
+  <td class="desc">מחשב את ההפרש בין שני תאריכים או זמנים.</td>
+</tr>
+<tr data-cat="array">
+  <td class="cmd">Insert</td>
+  <td>הכנס</td>
+  <td class="desc">מוסיף פריט חדש לרשימה או מערך.</td>
+</tr>
+<tr data-cat="array">
+  <td class="cmd">Remove</td>
+  <td>הסר</td>
+  <td class="desc">מוחק פריט מתוך רשימה או מערך.</td>
+</tr>
+<tr data-cat="array">
+  <td class="cmd">Index</td>
+  <td>אינדקס</td>
+  <td class="desc">מחזיר את המיקום של פריט במערך.</td>
+</tr>
+<tr data-cat="array">
+  <td class="cmd">Length</td>
+  <td>אורך</td>
+  <td class="desc">מחזיר את מספר הפריטים במערך.</td>
+</tr>
+<tr data-cat="array">
+  <td class="cmd">Sort</td>
+  <td>מיין</td>
+  <td class="desc">מסדר את הפריטים במערך לפי סדר.</td>
+</tr>
+<tr data-cat="array">
+  <td class="cmd">Reverse</td>
+  <td>הפוך</td>
+  <td class="desc">הופך את סדר הפריטים במערך.</td>
+</tr>
+<tr data-cat="array">
+  <td class="cmd">Join</td>
+  <td>חבר</td>
+  <td class="desc">מחבר את כל הפריטים למחרוזת אחת.</td>
+</tr>
+<tr data-cat="array">
+  <td class="cmd">Split</td>
+  <td>פצל</td>
+  <td class="desc">מפצל טקסט לרשימה לפי מפריד.</td>
+</tr>
+<tr data-cat="network">
+  <td class="cmd">Connect</td>
+  <td>התחבר</td>
+  <td class="desc">יוצר חיבור לרשת או לשרת.</td>
+</tr>
+<tr data-cat="network">
+  <td class="cmd">Disconnect</td>
+  <td>נתק</td>
+  <td class="desc">מסיים חיבור לרשת או לשרת.</td>
+</tr>
+<tr data-cat="network">
+  <td class="cmd">Download</td>
+  <td>הורד</td>
+  <td class="desc">מוריד קובץ או נתונים מהאינטרנט.</td>
+</tr>
+<tr data-cat="network">
+  <td class="cmd">Upload</td>
+  <td>העלה</td>
+  <td class="desc">מעלה קובץ או נתונים לשרת.</td>
+</tr>
+<tr data-cat="network">
+  <td class="cmd">Send</td>
+  <td>שלח</td>
+  <td class="desc">שולח הודעה או נתונים.</td>
+</tr>
+<tr data-cat="network">
+  <td class="cmd">Receive</td>
+  <td>קבל</td>
+  <td class="desc">מקבל הודעה או נתונים.</td>
+</tr>
+<tr data-cat="network">
+  <td class="cmd">Ping</td>
+  <td>בדוק חיבור</td>
+  <td class="desc">בודק אם שרת או כתובת זמינים.</td>
+</tr>
+<tr data-cat="io">
+  <td class="cmd">Input</td>
+  <td>קלט</td>
+  <td class="desc">מקבל נתונים מהמשתמש או ממקור חיצוני.</td>
+</tr>
+<tr data-cat="io">
+  <td class="cmd">Output</td>
+  <td>פלט</td>
+  <td class="desc">מציג נתונים או תוצאה למסך או לקובץ.</td>
+</tr>
+<tr data-cat="io">
+  <td class="cmd">Print</td>
+  <td>הדפס</td>
+  <td class="desc">מדפיס טקסט או ערכים למסך.</td>
+</tr>
+<tr data-cat="io">
+  <td class="cmd">Read</td>
+  <td>קרא</td>
+  <td class="desc">קורא נתונים מקובץ או מקור אחר.</td>
+</tr>
+<tr data-cat="io">
+  <td class="cmd">Write</td>
+  <td>כתוב</td>
+  <td class="desc">כותב נתונים לקובץ או יעד אחר.</td>
+</tr>
+<tr data-cat="io">
+  <td class="cmd">Clear</td>
+  <td>נקה</td>
+  <td class="desc">מנקה את המסך או את הפלט הקודם.</td>
+</tr>
+<tr data-cat="user">
+  <td class="cmd">Login</td>
+  <td>התחבר</td>
+  <td class="desc">מתחבר למערכת עם שם משתמש וסיסמה.</td>
+</tr>
+<tr data-cat="user">
+  <td class="cmd">Logout</td>
+  <td>התנתק</td>
+  <td class="desc">יוצא מהמערכת ומסיים את ההתחברות.</td>
+</tr>
+<tr data-cat="user">
+  <td class="cmd">Register</td>
+  <td>הרשם</td>
+  <td class="desc">יוצר חשבון משתמש חדש.</td>
+</tr>
+<tr data-cat="user">
+  <td class="cmd">Permission</td>
+  <td>הרשאה</td>
+  <td class="desc">בודק או מגדיר הרשאות למשתמש.</td>
+</tr>
+<tr data-cat="user">
+  <td class="cmd">Role</td>
+  <td>תפקיד</td>
+  <td class="desc">מגדיר תפקידים שונים למשתמשים.</td>
+</tr>
+<tr data-cat="user">
+  <td class="cmd">Admin</td>
+  <td>מנהל</td>
+  <td class="desc">משתמש עם הרשאות מלאות לניהול המערכת.</td>
+</tr>
+<tr data-cat="filesystem">
+  <td class="cmd">Path</td>
+  <td>נתיב</td>
+  <td class="desc">מייצג את המיקום של קובץ או תיקייה במערכת.</td>
+</tr>
+<tr data-cat="filesystem">
+  <td class="cmd">Directory</td>
+  <td>תיקייה</td>
+  <td class="desc">מכיל קבוצת קבצים ותיקיות משנה.</td>
+</tr>
+<tr data-cat="filesystem">
+  <td class="cmd">Move</td>
+  <td>העבר</td>
+  <td class="desc">מעביר קובץ או תיקייה למיקום חדש.</td>
+</tr>
+<tr data-cat="filesystem">
+  <td class="cmd">Rename</td>
+  <td>שנה שם</td>
+  <td class="desc">משנה את שם הקובץ או התיקייה.</td>
+</tr>
+<tr data-cat="filesystem">
+  <td class="cmd">Exists</td>
+  <td>קיים</td>
+  <td class="desc">בודק אם קובץ או תיקייה קיימים.</td>
+</tr>
+<tr data-cat="filesystem">
+  <td class="cmd">CreateDir</td>
+  <td>צור תיקייה</td>
+  <td class="desc">יוצר תיקייה חדשה במערכת.</td>
+</tr>
+<tr data-cat="filesystem">
+  <td class="cmd">DeleteDir</td>
+  <td>מחק תיקייה</td>
+  <td class="desc">מוחק תיקייה קיימת.</td>
+</tr>
+<tr data-cat="system">
+  <td class="cmd">StartProcess</td>
+  <td>התחל תהליך</td>
+  <td class="desc">מריץ תוכנה או תהליך חדש.</td>
+</tr>
+<tr data-cat="system">
+  <td class="cmd">KillProcess</td>
+  <td>סיים תהליך</td>
+  <td class="desc">מסיים תוכנה או תהליך פעיל.</td>
+</tr>
+<tr data-cat="system">
+  <td class="cmd">Restart</td>
+  <td>הפעל מחדש</td>
+  <td class="desc">מפעיל מחדש את המערכת או את התוכנה.</td>
+</tr>
+<tr data-cat="system">
+  <td class="cmd">Shutdown</td>
+  <td>כבה</td>
+  <td class="desc">מכבה את המחשב או המערכת.</td>
+</tr>
+<tr data-cat="system">
+  <td class="cmd">Sleep</td>
+  <td>מצב שינה</td>
+  <td class="desc">מכניס את המחשב למצב שינה.</td>
+</tr>
+<tr data-cat="system">
+  <td class="cmd">Log</td>
+  <td>יומן</td>
+  <td class="desc">רושם הודעות או אירועים ביומן המערכת.</td>
+</tr>
+<tr data-cat="security">
+  <td class="cmd">Encrypt</td>
+  <td>הצפן</td>
+  <td class="desc">מגן על נתונים באמצעות הצפנה.</td>
+</tr>
+<tr data-cat="security">
+  <td class="cmd">Decrypt</td>
+  <td>פענח</td>
+  <td class="desc">משחזר נתונים מוצפנים לצורתם המקורית.</td>
+</tr>
+<tr data-cat="security">
+  <td class="cmd">Hash</td>
+  <td>גיבוב</td>
+  <td class="desc">יוצר ערך ייחודי לנתונים לצורך בדיקה.</td>
+</tr>
+<tr data-cat="security">
+  <td class="cmd">Validate</td>
+  <td>אמת</td>
+  <td class="desc">בודק אם נתונים נכונים או תקינים.</td>
+</tr>
+<tr data-cat="security">
+  <td class="cmd">Secure</td>
+  <td>אבטח</td>
+  <td class="desc">מוסיף שכבת הגנה לנתונים או מערכת.</td>
+</tr>
+<tr data-cat="memory">
+  <td class="cmd">Set</td>
+  <td>הגדר</td>
+  <td class="desc">מגדיר ערך חדש למשתנה.</td>
+</tr>
+<tr data-cat="memory">
+  <td class="cmd">Get</td>
+  <td>קבל</td>
+  <td class="desc">מחזיר את הערך של משתנה.</td>
+</tr>
+<tr data-cat="memory">
+  <td class="cmd">Var</td>
+  <td>משתנה</td>
+  <td class="desc">יוצר משתנה חדש לאחסון נתונים.</td>
+</tr>
+<tr data-cat="memory">
+  <td class="cmd">Const</td>
+  <td>קבוע</td>
+  <td class="desc">יוצר ערך קבוע שלא משתנה.</td>
+</tr>
+<tr data-cat="memory">
+  <td class="cmd">DeleteVar</td>
+  <td>מחק משתנה</td>
+  <td class="desc">מסיר משתנה מהזיכרון.</td>
+</tr>
+<tr data-cat="memory">
+  <td class="cmd">Global</td>
+  <td>גלובלי</td>
+  <td class="desc">משתנה שנגיש בכל חלקי התוכנית.</td>
+</tr>
+<tr data-cat="memory">
+  <td class="cmd">Local</td>
+  <td>מקומי</td>
+  <td class="desc">משתנה שנגיש רק בתוך פונקציה או בלוק מסוים.</td>
+</tr>
+<tr data-cat="function">
+  <td class="cmd">Define</td>
+  <td>הגדר</td>
+  <td class="desc">יוצר פונקציה חדשה עם שם ופעולות.</td>
+</tr>
+<tr data-cat="function">
+  <td class="cmd">Call</td>
+  <td>קרא</td>
+  <td class="desc">מפעיל פונקציה קיימת.</td>
+</tr>
+<tr data-cat="function">
+  <td class="cmd">Return</td>
+  <td>החזר</td>
+  <td class="desc">מחזיר ערך מפונקציה אל הקריאה שלה.</td>
+</tr>
+<tr data-cat="function">
+  <td class="cmd">Parameter</td>
+  <td>פרמטר</td>
+  <td class="desc">ערך שמועבר לפונקציה בזמן הקריאה.</td>
+</tr>
+<tr data-cat="function">
+  <td class="cmd">Argument</td>
+  <td>ארגומנט</td>
+  <td class="desc">הערך בפועל שמועבר לפרמטר.</td>
+</tr>
+<tr data-cat="function">
+  <td class="cmd">Recursive</td>
+  <td>רקורסיבי</td>
+  <td class="desc">פונקציה שקוראת לעצמה שוב ושוב.</td>
+</tr>
+<tr data-cat="function">
+  <td class="cmd">Lambda</td>
+  <td>למבדה</td>
+  <td class="desc">פונקציה קצרה ללא שם, לרוב לשימוש מהיר.</td>
+</tr>
+<tr data-cat="loop">
+  <td class="cmd">For</td>
+  <td>עבור</td>
+  <td class="desc">מבצע פעולה מספר פעמים לפי תנאי.</td>
+</tr>
+<tr data-cat="loop">
+  <td class="cmd">While</td>
+  <td>כל עוד</td>
+  <td class="desc">מבצע פעולה כל עוד תנאי מתקיים.</td>
+</tr>
+<tr data-cat="loop">
+  <td class="cmd">Do</td>
+  <td>עשה</td>
+  <td class="desc">מבצע פעולה לפחות פעם אחת ואז בודק תנאי.</td>
+</tr>
+<tr data-cat="loop">
+  <td class="cmd">Break</td>
+  <td>צא</td>
+  <td class="desc">יוצא מהלולאה לפני סיום.</td>
+</tr>
+<tr data-cat="loop">
+  <td class="cmd">Continue</td>
+  <td>המשך</td>
+  <td class="desc">מדלג על צעד אחד בלולאה וממשיך הלאה.</td>
+</tr>
+<tr data-cat="error">
+  <td class="cmd">Try</td>
+  <td>נסה</td>
+  <td class="desc">מגדיר בלוק קוד שבו עלולות להתרחש שגיאות.</td>
+</tr>
+<tr data-cat="error">
+  <td class="cmd">Catch</td>
+  <td>תפוס</td>
+  <td class="desc">מטפל בשגיאה אם התרחשה בתוך בלוק Try.</td>
+</tr>
+<tr data-cat="error">
+  <td class="cmd">Throw</td>
+  <td>זרוק</td>
+  <td class="desc">יוצר חריגה באופן יזום כדי לעצור את הקוד.</td>
+</tr>
+<tr data-cat="error">
+  <td class="cmd">Finally</td>
+  <td>לבסוף</td>
+  <td class="desc">בלוק קוד שמבוצע תמיד, גם אם הייתה שגיאה.</td>
+</tr>
+<tr data-cat="error">
+  <td class="cmd">ErrorMessage</td>
+  <td>הודעת שגיאה</td>
+  <td class="desc">טקסט שמסביר מה קרה בזמן השגיאה.</td>
+</tr>
+<tr data-cat="error">
+  <td class="cmd">Exception</td>
+  <td>חריגה</td>
+  <td class="desc">אובייקט שמייצג שגיאה או מצב חריג בקוד.</td>
+</tr>
+<tr data-cat="error">
+  <td class="cmd">Handle</td>
+  <td>טפל</td>
+  <td class="desc">מטפל בשגיאה בצורה מותאמת אישית.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Window</td>
+  <td>חלון</td>
+  <td class="desc">יוצר או מציג חלון חדש בממשק.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Dialog</td>
+  <td>תיבת דו־שיח</td>
+  <td class="desc">חלון קטן להצגת הודעה או לקבלת קלט.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Button</td>
+  <td>כפתור</td>
+  <td class="desc">אלמנט לחיצה שמבצע פעולה.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Label</td>
+  <td>תווית</td>
+  <td class="desc">טקסט סטטי שמוצג בממשק.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Textbox</td>
+  <td>תיבת טקסט</td>
+  <td class="desc">שדה להזנת טקסט על ידי המשתמש.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Checkbox</td>
+  <td>תיבת סימון</td>
+  <td class="desc">אפשרות בחירה/ביטול לבחירה מרובה.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Dropdown</td>
+  <td>תפריט נפתח</td>
+  <td class="desc">רשימה של אפשרויות לבחירה.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Menu</td>
+  <td>תפריט</td>
+  <td class="desc">רשימת פעולות או אפשרויות בממשק.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Icon</td>
+  <td>סמל</td>
+  <td class="desc">תמונה קטנה שמייצגת פעולה או פריט.</td>
+</tr>
+<tr data-cat="ui">
+  <td class="cmd">Tooltip</td>
+  <td>רמז</td>
+  <td class="desc">טקסט קצר שמופיע כשעוברים עם העכבר על אלמנט.</td>
+</tr>
+<tr data-cat="media">
+  <td class="cmd">Play</td>
+  <td>נגן</td>
+  <td class="desc">מפעיל קובץ מדיה (שמע או וידאו).</td>
+</tr>
+<tr data-cat="media">
+  <td class="cmd">Pause</td>
+  <td>השהה</td>
+  <td class="desc">עוצר זמנית את ההפעלה.</td>
+</tr>
+<tr data-cat="media">
+  <td class="cmd">Stop</td>
+  <td>עצור</td>
+  <td class="desc">מסיים את ההפעלה של המדיה.</td>
+</tr>
+<tr data-cat="media">
+  <td class="cmd">Record</td>
+  <td>הקלט</td>
+  <td class="desc">מתחיל הקלטה של שמע או וידאו.</td>
+</tr>
+<tr data-cat="media">
+  <td class="cmd">Volume</td>
+  <td>עוצמת קול</td>
+  <td class="desc">מגדיר או משנה את עוצמת הקול.</td>
+</tr>
+<tr data-cat="media">
+  <td class="cmd">Mute</td>
+  <td>השתק</td>
+  <td class="desc">מכבה את הצליל בהפעלה.</td>
+</tr>
+<tr data-cat="media">
+  <td class="cmd">Seek</td>
+  <td>דלג</td>
+  <td class="desc">מעביר את ההפעלה לנקודת זמן אחרת.</td>
+</tr>
+<tr data-cat="api">
+  <td class="cmd">Request</td>
+  <td>בקשה</td>
+  <td class="desc">שולח בקשה למערכת חיצונית או API.</td>
+</tr>
+<tr data-cat="api">
+  <td class="cmd">Response</td>
+  <td>תגובה</td>
+  <td class="desc">מקבל תשובה ממערכת חיצונית או API.</td>
+</tr>
+<tr data-cat="api">
+  <td class="cmd">Auth</td>
+  <td>אימות</td>
+  <td class="desc">מבצע אימות מול מערכת חיצונית.</td>
+</tr>
+<tr data-cat="api">
+  <td class="cmd">Token</td>
+  <td>טוקן</td>
+  <td class="desc">מפתח גישה זמני למערכת חיצונית.</td>
+</tr>
+<tr data-cat="api">
+  <td class="cmd">Endpoint</td>
+  <td>נקודת קצה</td>
+  <td class="desc">כתובת או נתיב ספציפי ב־API.</td>
+</tr>
+<tr data-cat="api">
+  <td class="cmd">Header</td>
+  <td>כותרת</td>
+  <td class="desc">מידע נוסף שנשלח עם בקשה או תגובה.</td>
+</tr>
+<tr data-cat="api">
+  <td class="cmd">Body</td>
+  <td>גוף</td>
+  <td class="desc">הנתונים שנשלחים או מתקבלים בבקשה.</td>
+</tr>
+<tr data-cat="hardware">
+  <td class="cmd">ReadSensor</td>
+  <td>קריאת חיישן</td>
+  <td class="desc">מקבל נתונים מחיישן (טמפרטורה, תנועה, אור וכו').</td>
+</tr>
+<tr data-cat="hardware">
+  <td class="cmd">WriteSensor</td>
+  <td>כתיבה לחיישן</td>
+  <td class="desc">שולח פקודה או ערך לחיישן.</td>
+</tr>
+<tr data-cat="hardware">
+  <td class="cmd">ConnectDevice</td>
+  <td>חבר התקן</td>
+  <td class="desc">יוצר חיבור להתקן חיצוני (USB, Bluetooth וכו').</td>
+</tr>
+<tr data-cat="hardware">
+  <td class="cmd">DisconnectDevice</td>
+  <td>נתק התקן</td>
+  <td class="desc">מסיים חיבור להתקן חיצוני.</td>
+</tr>
+<tr data-cat="hardware">
+  <td class="cmd">Calibrate</td>
+  <td>כיול</td>
+  <td class="desc">מכוון חיישן או התקן לערכים נכונים.</td>
+</tr>
+<tr data-cat="hardware">
+  <td class="cmd">Status</td>
+  <td>מצב</td>
+  <td class="desc">בודק את מצב ההתקן או החיישן.</td>
+</tr>
+<tr data-cat="hardware">
+  <td class="cmd">ResetDevice</td>
+  <td>אפס התקן</td>
+  <td class="desc">מאפס התקן להגדרות ברירת מחדל.</td>
+</tr>
+<tr data-cat="ai">
+  <td class="cmd">Train</td>
+  <td>אמן</td>
+  <td class="desc">מאמן מודל על בסיס נתונים.</td>
+</tr>
+<tr data-cat="ai">
+  <td class="cmd">Predict</td>
+  <td>חזה</td>
+  <td class="desc">מפיק תחזית או תוצאה על סמך מודל מאומן.</td>
+</tr>
+<tr data-cat="ai">
+  <td class="cmd">Model</td>
+  <td>מודל</td>
+  <td class="desc">ייצוג מתמטי או לוגי של מערכת נתונים.</td>
+</tr>
+<tr data-cat="ai">
+  <td class="cmd">Dataset</td>
+  <td>מערך נתונים</td>
+  <td class="desc">קובץ או אוסף נתונים המשמש לאימון מודל.</td>
+</tr>
+<tr data-cat="ai">
+  <td class="cmd">Feature</td>
+  <td>מאפיין</td>
+  <td class="desc">תכונה או ערך שמייצג חלק מהנתונים.</td>
+</tr>
+<tr data-cat="ai">
+  <td class="cmd">Label</td>
+  <td>תווית</td>
+  <td class="desc">ערך ידוע שמסווג נתונים לצורך אימון.</td>
+</tr>
+<tr data-cat="ai">
+  <td class="cmd">Evaluate</td>
+  <td>הערך</td>
+  <td class="desc">בודק את איכות המודל והדיוק שלו.</td>
+</tr>
+<tr data-cat="ai">
+  <td class="cmd">Optimize</td>
+  <td>מטב</td>
+  <td class="desc">משפר את ביצועי המודל.</td>
+</tr>
+<tr data-cat="messaging">
+  <td class="cmd">SendMessage</td>
+  <td>שלח הודעה</td>
+  <td class="desc">שולח הודעה למשתמש או מערכת אחרת.</td>
+</tr>
+<tr data-cat="messaging">
+  <td class="cmd">ReceiveMessage</td>
+  <td>קבל הודעה</td>
+  <td class="desc">מקבל הודעה נכנסת ממקור חיצוני.</td>
+</tr>
+<tr data-cat="messaging">
+  <td class="cmd">Broadcast</td>
+  <td>שדר</td>
+  <td class="desc">שולח הודעה לכל המשתמשים או לכל המערכת.</td>
+</tr>
+<tr data-cat="messaging">
+  <td class="cmd">Notify</td>
+  <td>התראה</td>
+  <td class="desc">מציג הודעת התראה או עדכון למשתמש.</td>
+</tr>
+<tr data-cat="messaging">
+  <td class="cmd">Queue</td>
+  <td>תור</td>
+  <td class="desc">שומר הודעות בתור עד לעיבוד.</td>
+</tr>
+<tr data-cat="messaging">
+  <td class="cmd">Topic</td>
+  <td>נושא</td>
+  <td class="desc">מגדיר ערוץ או נושא לתקשורת קבוצתית.</td>
+</tr>
+<tr data-cat="cloud">
+  <td class="cmd">UploadCloud</td>
+  <td>העלה לענן</td>
+  <td class="desc">שולח קובץ או נתונים לאחסון בענן.</td>
+</tr>
+<tr data-cat="cloud">
+  <td class="cmd">DownloadCloud</td>
+  <td>הורד מהענן</td>
+  <td class="desc">מוריד קובץ או נתונים מהענן.</td>
+</tr>
+<tr data-cat="cloud">
+  <td class="cmd">Sync</td>
+  <td>סנכרן</td>
+  <td class="desc">מסנכרן נתונים בין מחשב מקומי לענן.</td>
+</tr>
+<tr data-cat="cloud">
+  <td class="cmd">Deploy</td>
+  <td>פרוס</td>
+  <td class="desc">מעלה ומפעיל אפליקציה או שירות בענן.</td>
+</tr>
+<tr data-cat="cloud">
+  <td class="cmd">Backup</td>
+  <td>גיבוי</td>
+  <td class="desc">יוצר עותק נתונים לשחזור עתידי.</td>
+</tr>
+<tr data-cat="cloud">
+  <td class="cmd">Restore</td>
+  <td>שחזר</td>
+  <td class="desc">משחזר נתונים מגיבוי בענן.</td>
+</tr>
+<tr data-cat="cloud">
+  <td class="cmd">Cluster</td>
+  <td>אשכול</td>
+  <td class="desc">מנהל קבוצת שרתים בענן כיחידה אחת.</td>
+</tr>
+<tr data-cat="datafiles">
+  <td class="cmd">Import</td>
+  <td>ייבא</td>
+  <td class="desc">מכניס נתונים מקובץ חיצוני לתוך המערכת.</td>
+</tr>
+<tr data-cat="datafiles">
+  <td class="cmd">Export</td>
+  <td>ייצא</td>
+  <td class="desc">שומר נתונים לקובץ בפורמט מסוים.</td>
+</tr>
+<tr data-cat="datafiles">
+  <td class="cmd">Parse</td>
+  <td>פענח</td>
+  <td class="desc">מפרק קובץ נתונים למבנה קריא (למשל JSON או XML).</td>
+</tr>
+<tr data-cat="datafiles">
+  <td class="cmd">Serialize</td>
+  <td>סדר</td>
+  <td class="desc">ממיר נתונים למחרוזת או פורמט לשמירה.</td>
+</tr>
+<tr data-cat="datafiles">
+  <td class="cmd">Deserialize</td>
+  <td>פרק</td>
+  <td class="desc">מחזיר נתונים ממחרוזת או פורמט למבנה מקורי.</td>
+</tr>
+<tr data-cat="datafiles">
+  <td class="cmd">ValidateSchema</td>
+  <td>אמת מבנה</td>
+  <td class="desc">בודק אם הנתונים מתאימים למבנה מוגדר מראש.</td>
+</tr>
+<tr data-cat="datafiles">
+  <td class="cmd">Transform</td>
+  <td>המר</td>
+  <td class="desc">משנה את הנתונים לפורמט או מבנה אחר.</td>
+</tr>
+<tr data-cat="os">
+  <td class="cmd">Env</td>
+  <td>סביבה</td>
+  <td class="desc">מציג או משנה משתני סביבה במערכת.</td>
+</tr>
+<tr data-cat="os">
+  <td class="cmd">Path</td>
+  <td>נתיב</td>
+  <td class="desc">מגדיר או מציג נתיב ברירת מחדל לקבצים ותוכנות.</td>
+</tr>
+<tr data-cat="os">
+  <td class="cmd">Config</td>
+  <td>הגדרות</td>
+  <td class="desc">משנה או מציג הגדרות מערכת.</td>
+</tr>
+<tr data-cat="os">
+  <td class="cmd">Service</td>
+  <td>שירות</td>
+  <td class="desc">מפעיל או עוצר שירותי מערכת.</td>
+</tr>
+<tr data-cat="os">
+  <td class="cmd">Task</td>
+  <td>משימה</td>
+  <td class="desc">מנהל משימות ותהליכים פעילים.</td>
+</tr>
+<tr data-cat="os">
+  <td class="cmd">Update</td>
+  <td>עדכן</td>
+  <td class="desc">מוריד ומתקין עדכוני מערכת.</td>
+</tr>
+<tr data-cat="os">
+  <td class="cmd">Permission</td>
+  <td>הרשאה</td>
+  <td class="desc">מגדיר הרשאות לקבצים או תהליכים במערכת.</td>
+</tr>
+<tr data-cat="schedule">
+  <td class="cmd">Schedule</td>
+  <td>תזמן</td>
+  <td class="desc">מגדיר פעולה שתתרחש בזמן מסוים.</td>
+</tr>
+<tr data-cat="schedule">
+  <td class="cmd">Delay</td>
+  <td>השהה</td>
+  <td class="desc">דוחה פעולה לזמן מאוחר יותר.</td>
+</tr>
+<tr data-cat="schedule">
+  <td class="cmd">Timer</td>
+  <td>טיימר</td>
+  <td class="desc">מודד זמן עד להפעלה או סיום פעולה.</td>
+</tr>
+<tr data-cat="schedule">
+  <td class="cmd">Cron</td>
+  <td>קרון</td>
+  <td class="desc">מגדיר משימות חוזרות לפי לוח זמנים קבוע.</td>
+</tr>
+<tr data-cat="schedule">
+  <td class="cmd">Repeat</td>
+  <td>חזור</td>
+  <td class="desc">מבצע פעולה שוב ושוב לפי מרווח זמן.</td>
+</tr>
+<tr data-cat="schedule">
+  <td class="cmd">Interval</td>
+  <td>מרווח</td>
+  <td class="desc">מגדיר מרווח זמן בין פעולות חוזרות.</td>
+</tr>
+<tr data-cat="cache">
+  <td class="cmd">Store</td>
+  <td>שמור</td>
+  <td class="desc">שומר נתונים בזיכרון מטמון לגישה מהירה.</td>
+</tr>
+<tr data-cat="cache">
+  <td class="cmd">Retrieve</td>
+  <td>שלוף</td>
+  <td class="desc">מחזיר נתונים מהמטמון לשימוש חוזר.</td>
+</tr>
+<tr data-cat="cache">
+  <td class="cmd">Invalidate</td>
+  <td>בטל</td>
+  <td class="desc">מוחק נתונים ישנים מהמטמון.</td>
+</tr>
+<tr data-cat="cache">
+  <td class="cmd">Refresh</td>
+  <td>רענן</td>
+  <td class="desc">מעדכן נתונים במטמון עם ערכים חדשים.</td>
+</tr>
+<tr data-cat="cache">
+  <td class="cmd">ClearCache</td>
+  <td>נקה מטמון</td>
+  <td class="desc">מוחק את כל הנתונים מהמטמון.</td>
+</tr>
+<tr data-cat="cache">
+  <td class="cmd">CacheSize</td>
+  <td>גודל מטמון</td>
+  <td class="desc">בודק את כמות הנתונים המאוחסנים במטמון.</td>
+</tr>
+<tr data-cat="testing">
+  <td class="cmd">Test</td>
+  <td>בדוק</td>
+  <td class="desc">מריץ בדיקה כדי לוודא שהקוד או הפקודה עובדים נכון.</td>
+</tr>
+<tr data-cat="testing">
+  <td class="cmd">Assert</td>
+  <td>טען</td>
+  <td class="desc">בודק אם תנאי מסוים נכון, אחרת מחזיר שגיאה.</td>
+</tr>
+<tr data-cat="testing">
+  <td class="cmd">Mock</td>
+  <td>מדמה</td>
+  <td class="desc">יוצר אובייקט או פעולה מדומה לצורך בדיקה.</td>
+</tr>
+<tr data-cat="testing">
+  <td class="cmd">DebugTest</td>
+  <td>בדיקת ניפוי</td>
+  <td class="desc">מריץ בדיקה עם אפשרות לניפוי שגיאות.</td>
+</tr>
+<tr data-cat="testing">
+  <td class="cmd">Coverage</td>
+  <td>כיסוי</td>
+  <td class="desc">בודק כמה מהקוד נבדק על ידי בדיקות.</td>
+</tr>
+<tr data-cat="testing">
+  <td class="cmd">Benchmark</td>
+  <td>מדד ביצועים</td>
+  <td class="desc">מודד את זמן הריצה או ביצועי הקוד.</td>
+</tr>
+<tr data-cat="automation">
+  <td class="cmd">Script</td>
+  <td>סקריפט</td>
+  <td class="desc">רצף פקודות שמבוצעות אוטומטית.</td>
+</tr>
+<tr data-cat="automation">
+  <td class="cmd">Macro</td>
+  <td>מקרו</td>
+  <td class="desc">פקודה אחת שמבצעת סדרת פעולות מוגדרות מראש.</td>
+</tr>
+<tr data-cat="automation">
+  <td class="cmd">AutoRun</td>
+  <td>הרצה אוטומטית</td>
+  <td class="desc">מפעיל קוד או סקריפט באופן אוטומטי בעת אירוע מסוים.</td>
+</tr>
+<tr data-cat="automation">
+  <td class="cmd">Trigger</td>
+  <td>טריגר</td>
+  <td class="desc">אירוע שמפעיל פעולה או סקריפט.</td>
+</tr>
+<tr data-cat="automation">
+  <td class="cmd">Workflow</td>
+  <td>תהליך עבודה</td>
+  <td class="desc">רצף פעולות אוטומטיות שמבוצעות לפי סדר.</td>
+</tr>
+<tr data-cat="automation">
+  <td class="cmd">ScheduleTask</td>
+  <td>משימה מתוזמנת</td>
+  <td class="desc">מגדיר משימה אוטומטית שתתרחש בזמן מסוים.</td>
+</tr>
+<tr data-cat="database">
+  <td class="cmd">ConnectDB</td>
+  <td>התחבר למסד נתונים</td>
+  <td class="desc">יוצר חיבור למסד נתונים.</td>
+</tr>
+<tr data-cat="database">
+  <td class="cmd">Query</td>
+  <td>שאילתה</td>
+  <td class="desc">מבצע חיפוש או פעולה במסד הנתונים.</td>
+</tr>
+<tr data-cat="database">
+  <td class="cmd">Insert</td>
+  <td>הכנס</td>
+  <td class="desc">מוסיף רשומה חדשה למסד הנתונים.</td>
+</tr>
+<tr data-cat="database">
+  <td class="cmd">Update</td>
+  <td>עדכן</td>
+  <td class="desc">משנה נתונים קיימים במסד הנתונים.</td>
+</tr>
+<tr data-cat="database">
+  <td class="cmd">Delete</td>
+  <td>מחק</td>
+  <td class="desc">מסיר רשומה ממסד הנתונים.</td>
+</tr>
+<tr data-cat="database">
+  <td class="cmd">Transaction</td>
+  <td>עסקה</td>
+  <td class="desc">מבצע סדרת פעולות כיחידה אחת.</td>
+</tr>
+<tr data-cat="database">
+  <td class="cmd">Commit</td>
+  <td>אשר</td>
+  <td class="desc">שומר את השינויים במסד הנתונים.</td>
+</tr>
+<tr data-cat="database">
+  <td class="cmd">Rollback</td>
+  <td>בטל</td>
+  <td class="desc">מחזיר את מסד הנתונים למצב קודם.</td>
+</tr>
+<tr data-cat="version">
+  <td class="cmd">Commit</td>
+  <td>שמור גרסה</td>
+  <td class="desc">שומר שינויים בקוד כגרסה חדשה.</td>
+</tr>
+<tr data-cat="version">
+  <td class="cmd">Push</td>
+  <td>דחוף</td>
+  <td class="desc">שולח שינויים לשרת מרכזי.</td>
+</tr>
+<tr data-cat="version">
+  <td class="cmd">Pull</td>
+  <td>משוך</td>
+  <td class="desc">מקבל שינויים מהשרת המרכזי.</td>
+</tr>
+<tr data-cat="version">
+  <td class="cmd">Merge</td>
+  <td>מזג</td>
+  <td class="desc">מאחד שינויים משני מקורות שונים.</td>
+</tr>
+<tr data-cat="version">
+  <td class="cmd">Branch</td>
+  <td>ענף</td>
+  <td class="desc">יוצר קו פיתוח נפרד בקוד.</td>
+</tr>
+<tr data-cat="version">
+  <td class="cmd">Tag</td>
+  <td>תג</td>
+  <td class="desc">מסמן גרסה חשובה או יציבה בקוד.</td>
+</tr>
+<tr data-cat="version">
+  <td class="cmd">Clone</td>
+  <td>שכפל</td>
+  <td class="desc">יוצר עותק מלא של מאגר קוד.</td>
+</tr>
+<tr data-cat="version">
+  <td class="cmd">Diff</td>
+  <td>השוואה</td>
+  <td class="desc">מציג את ההבדלים בין שתי גרסאות.</td>
+</tr>
+<tr data-cat="networking-adv">
+  <td class="cmd">Route</td>
+  <td>נתיב</td>
+  <td class="desc">מגדיר או מציג את הדרך שבה נתונים עוברים ברשת.</td>
+</tr>
+<tr data-cat="networking-adv">
+  <td class="cmd">Firewall</td>
+  <td>חומת אש</td>
+  <td class="desc">מסנן תעבורת רשת לפי כללים להגנה על המערכת.</td>
+</tr>
+<tr data-cat="networking-adv">
+  <td class="cmd">Proxy</td>
+  <td>שרת מתווך</td>
+  <td class="desc">מעביר בקשות דרך שרת מתווך לצורך אבטחה או ניהול.</td>
+</tr>
+<tr data-cat="networking-adv">
+  <td class="cmd">DNS</td>
+  <td>מערכת שמות דומיין</td>
+  <td class="desc">מתרגם כתובות אינטרנט לשמות קריאים.</td>
+</tr>
+<tr data-cat="networking-adv">
+  <td class="cmd">IP</td>
+  <td>כתובת IP</td>
+  <td class="desc">מספר ייחודי שמזהה מחשב או התקן ברשת.</td>
+</tr>
+<tr data-cat="networking-adv">
+  <td class="cmd">Port</td>
+  <td>פורט</td>
+  <td class="desc">נקודת גישה לתקשורת בין תוכנות ברשת.</td>
+</tr>
+<tr data-cat="networking-adv">
+  <td class="cmd">Ping</td>
+  <td>בדוק חיבור</td>
+  <td class="desc">בודק אם כתובת ברשת זמינה ומגיבה.</td>
+</tr>
+<tr data-cat="networking-adv">
+  <td class="cmd">Traceroute</td>
+  <td>מעקב נתיב</td>
+  <td class="desc">מציג את הדרך שעוברים הנתונים עד ליעד.</td>
+</tr>
+<tr data-cat="security-adv">
+  <td class="cmd">Audit</td>
+  <td>ביקורת</td>
+  <td class="desc">בודק את פעולות המערכת לצורך אבטחה.</td>
+</tr>
+<tr data-cat="security-adv">
+  <td class="cmd">Policy</td>
+  <td>מדיניות</td>
+  <td class="desc">מגדיר כללים לניהול ואבטחת מידע.</td>
+</tr>
+<tr data-cat="security-adv">
+  <td class="cmd">AccessControl</td>
+  <td>בקרת גישה</td>
+  <td class="desc">מנהל מי יכול לגשת למשאבים מסוימים.</td>
+</tr>
+<tr data-cat="security-adv">
+  <td class="cmd">TwoFactor</td>
+  <td>אימות דו־שלבי</td>
+  <td class="desc">מוסיף שכבת אבטחה נוספת בהתחברות.</td>
+</tr>
+<tr data-cat="security-adv">
+  <td class="cmd">Certificate</td>
+  <td>תעודה</td>
+  <td class="desc">מאמת זהות באמצעות תעודות דיגיטליות.</td>
+</tr>
+<tr data-cat="security-adv">
+  <td class="cmd">Vulnerability</td>
+  <td>פגיעות</td>
+  <td class="desc">נקודת חולשה במערכת שדורשת תיקון.</td>
+</tr>
+<tr data-cat="security-adv">
+  <td class="cmd">Patch</td>
+  <td>טלאי</td>
+  <td class="desc">עדכון שמתקן בעיות אבטחה.</td>
+</tr>
+<tr data-cat="graphics-adv">
+  <td class="cmd">Render</td>
+  <td>עיבוד</td>
+  <td class="desc">יוצר תמונה או גרף סופי מתוך נתונים או מודל.</td>
+</tr>
+<tr data-cat="graphics-adv">
+  <td class="cmd">Shader</td>
+  <td>צללון</td>
+  <td class="desc">קוד שמגדיר איך צבעים ואורות מוצגים בגרפיקה.</td>
+</tr>
+<tr data-cat="graphics-adv">
+  <td class="cmd">Texture</td>
+  <td>מרקם</td>
+  <td class="desc">תמונה שמצופה על אובייקט כדי לתת לו מראה מציאותי.</td>
+</tr>
+<tr data-cat="graphics-adv">
+  <td class="cmd">3DModel</td>
+  <td>מודל תלת־ממד</td>
+  <td class="desc">אובייקט תלת־ממדי שמיוצג במחשב.</td>
+</tr>
+<tr data-cat="graphics-adv">
+  <td class="cmd">Animation</td>
+  <td>אנימציה</td>
+  <td class="desc">תנועה או שינוי הדרגתי של אובייקט גרפי.</td>
+</tr>
+<tr data-cat="graphics-adv">
+  <td class="cmd">Frame</td>
+  <td>פריים</td>
+  <td class="desc">תמונה אחת מתוך רצף אנימציה.</td>
+</tr>
+<tr data-cat="graphics-adv">
+  <td class="cmd">Resolution</td>
+  <td>רזולוציה</td>
+  <td class="desc">רמת הפירוט של תמונה או גרף.</td>
+</tr>
+<tr data-cat="mobile">
+  <td class="cmd">InstallApp</td>
+  <td>התקן אפליקציה</td>
+  <td class="desc">מוריד ומתקין אפליקציה חדשה במכשיר נייד.</td>
+</tr>
+<tr data-cat="mobile">
+  <td class="cmd">UninstallApp</td>
+  <td>הסר אפליקציה</td>
+  <td class="desc">מסיר אפליקציה קיימת מהמכשיר.</td>
+</tr>
+<tr data-cat="mobile">
+  <td class="cmd">Notification</td>
+  <td>התראה</td>
+  <td class="desc">מציג הודעה או עדכון למשתמש במכשיר.</td>
+</tr>
+<tr data-cat="mobile">
+  <td class="cmd">PermissionMobile</td>
+  <td>הרשאות נייד</td>
+  <td class="desc">מגדיר הרשאות לאפליקציה במכשיר נייד.</td>
+</tr>
+<tr data-cat="mobile">
+  <td class="cmd">UpdateApp</td>
+  <td>עדכן אפליקציה</td>
+  <td class="desc">מוריד ומתקין גרסה חדשה לאפליקציה קיימת.</td>
+</tr>
+<tr data-cat="mobile">
+  <td class="cmd">SyncMobile</td>
+  <td>סנכרון נייד</td>
+  <td class="desc">מסנכרן נתונים בין מכשיר נייד לשירות ענן או מחשב.</td>
+</tr>
+<tr data-cat="mobile">
+  <td class="cmd">BatteryStatus</td>
+  <td>מצב סוללה</td>
+  <td class="desc">בודק את מצב הסוללה במכשיר נייד.</td>
+</tr>
+<tr data-cat="mobile">
+  <td class="cmd">Location</td>
+  <td>מיקום</td>
+  <td class="desc">מקבל את מיקום המשתמש באמצעות GPS.</td>
+</tr>
+<tr data-cat="robotics">
+  <td class="cmd">MoveArm</td>
+  <td>הזז זרוע</td>
+  <td class="desc">מפעיל את זרוע הרובוט לתנועה מוגדרת.</td>
+</tr>
+<tr data-cat="robotics">
+  <td class="cmd">Rotate</td>
+  <td>סובב</td>
+  <td class="desc">מסובב חלק או מנוע בזווית מסוימת.</td>
+</tr>
+<tr data-cat="robotics">
+  <td class="cmd">SensorCheck</td>
+  <td>בדיקת חיישן</td>
+  <td class="desc">בודק את מצב החיישנים ברובוט.</td>
+</tr>
+<tr data-cat="robotics">
+  <td class="cmd">ExecuteTask</td>
+  <td>בצע משימה</td>
+  <td class="desc">מריץ פעולה מוגדרת מראש ברובוט.</td>
+</tr>
+<tr data-cat="robotics">
+  <td class="cmd">PathPlan</td>
+  <td>תכנון מסלול</td>
+  <td class="desc">מחשב את הדרך שהרובוט צריך לעבור.</td>
+</tr>
+<tr data-cat="robotics">
+  <td class="cmd">Grip</td>
+  <td>אחיזה</td>
+  <td class="desc">מפעיל את כף היד או הצבת לאחיזת חפצים.</td>
+</tr>
+<tr data-cat="robotics">
+  <td class="cmd">Release</td>
+  <td>שחרר</td>
+  <td class="desc">משחרר חפץ שהרובוט מחזיק.</td>
+</tr>
+<tr data-cat="iot">
+  <td class="cmd">ConnectIoT</td>
+  <td>התחבר IoT</td>
+  <td class="desc">יוצר חיבור להתקן חכם ברשת.</td>
+</tr>
+<tr data-cat="iot">
+  <td class="cmd">Monitor</td>
+  <td>ניטור</td>
+  <td class="desc">עוקב אחרי מצב התקנים חכמים בזמן אמת.</td>
+</tr>
+<tr data-cat="iot">
+  <td class="cmd">ControlDevice</td>
+  <td>שלוט בהתקן</td>
+  <td class="desc">שולח פקודות להפעלה או כיבוי של התקן חכם.</td>
+</tr>
+<tr data-cat="iot">
+  <td class="cmd">UpdateFirmware</td>
+  <td>עדכון קושחה</td>
+  <td class="desc">מעדכן את תוכנת ההפעלה של התקן IoT.</td>
+</tr>
+<tr data-cat="iot">
+  <td class="cmd">SyncDevices</td>
+  <td>סנכרון התקנים</td>
+  <td class="desc">מסנכרן כמה התקנים חכמים לפעולה משותפת.</td>
+</tr>
+<tr data-cat="iot">
+  <td class="cmd">Alert</td>
+  <td>התראה</td>
+  <td class="desc">שולח הודעת אזהרה או עדכון מהתקן חכם.</td>
+</tr>
+<tr data-cat="iot">
+  <td class="cmd">LogData</td>
+  <td>רישום נתונים</td>
+  <td class="desc">שומר נתונים מהתקנים חכמים לצורך ניתוח.</td>
+</tr>
+<tr data-cat="analytics">
+  <td class="cmd">Analyze</td>
+  <td>נתח</td>
+  <td class="desc">מבצע ניתוח נתונים כדי להפיק תובנות.</td>
+</tr>
+<tr data-cat="analytics">
+  <td class="cmd">Report</td>
+  <td>דוח</td>
+  <td class="desc">יוצר סיכום נתונים או תוצאות בצורה קריאה.</td>
+</tr>
+<tr data-cat="analytics">
+  <td class="cmd">Correlation</td>
+  <td>מתאם</td>
+  <td class="desc">בודק קשר בין שני משתנים.</td>
+</tr>
+<tr data-cat="analytics">
+  <td class="cmd">Regression</td>
+  <td>רגרסיה</td>
+  <td class="desc">מחשב מודל שמנבא ערכים על סמך נתונים קיימים.</td>
+</tr>
+<tr data-cat="analytics">
+  <td class="cmd">Distribution</td>
+  <td>התפלגות</td>
+  <td class="desc">מציג איך נתונים מתפזרים על פני ערכים שונים.</td>
+</tr>
+<tr data-cat="analytics">
+  <td class="cmd">Variance</td>
+  <td>שונות</td>
+  <td class="desc">מודד את מידת הפיזור של הנתונים.</td>
+</tr>
+<tr data-cat="analytics">
+  <td class="cmd">StandardDeviation</td>
+  <td>סטיית תקן</td>
+  <td class="desc">מודד את הפיזור סביב הממוצע.</td>
+</tr>
+<tr data-cat="devops">
+  <td class="cmd">Build</td>
+  <td>בנה</td>
+  <td class="desc">מרכיב את הקוד לקובץ או אפליקציה להרצה.</td>
+</tr>
+<tr data-cat="devops">
+  <td class="cmd">Deploy</td>
+  <td>פרוס</td>
+  <td class="desc">מעלה ומפעיל אפליקציה או שירות בסביבה ייצור.</td>
+</tr>
+<tr data-cat="devops">
+  <td class="cmd">Pipeline</td>
+  <td>צינור</td>
+  <td class="desc">רצף שלבים אוטומטיים לבנייה, בדיקה ופריסה.</td>
+</tr>
+<tr data-cat="devops">
+  <td class="cmd">Monitor</td>
+  <td>ניטור</td>
+  <td class="desc">עוקב אחרי ביצועי מערכת או אפליקציה בזמן אמת.</td>
+</tr>
+<tr data-cat="devops">
+  <td class="cmd">Rollback</td>
+  <td>חזור לאחור</td>
+  <td class="desc">מחזיר אפליקציה לגרסה קודמת במקרה של בעיה.</td>
+</tr>
+<tr data-cat="devops">
+  <td class="cmd">Scale</td>
+  <td>הרחב</td>
+  <td class="desc">מגדיל או מקטין את המשאבים לפי עומס.</td>
+</tr>
+<tr data-cat="devops">
+  <td class="cmd">CI/CD</td>
+  <td>שילוב רציף / פריסה רציפה</td>
+  <td class="desc">תהליך אוטומטי שמשלב בדיקות ופריסה מתמשכת.</td>
+</tr>
+<tr data-cat="blockchain">
+  <td class="cmd">Block</td>
+  <td>בלוק</td>
+  <td class="desc">יחידת נתונים שמתווספת לשרשרת בלוקצ'יין.</td>
+</tr>
+<tr data-cat="blockchain">
+  <td class="cmd">Chain</td>
+  <td>שרשרת</td>
+  <td class="desc">רצף בלוקים שמחוברים יחד בצורה מאובטחת.</td>
+</tr>
+<tr data-cat="blockchain">
+  <td class="cmd">Transaction</td>
+  <td>עסקה</td>
+  <td class="desc">פעולה פיננסית או נתונית שנרשמת בבלוקצ'יין.</td>
+</tr>
+<tr data-cat="blockchain">
+  <td class="cmd">SmartContract</td>
+  <td>חוזה חכם</td>
+  <td class="desc">קוד שמבצע אוטומטית תנאים של חוזה.</td>
+</tr>
+<tr data-cat="blockchain">
+  <td class="cmd">Mining</td>
+  <td>כרייה</td>
+  <td class="desc">תהליך יצירת בלוקים חדשים באמצעות חישובים מתמטיים.</td>
+</tr>
+<tr data-cat="blockchain">
+  <td class="cmd">Wallet</td>
+  <td>ארנק</td>
+  <td class="desc">אחסון מאובטח למטבעות דיגיטליים.</td>
+</tr>
+<tr data-cat="blockchain">
+  <td class="cmd">Token</td>
+  <td>טוקן</td>
+  <td class="desc">יחידת ערך דיגיטלית שמיוצרת על גבי בלוקצ'יין.</td>
+</tr>
+<tr data-cat="blockchain">
+  <td class="cmd">Ledger</td>
+  <td>פנקס</td>
+  <td class="desc">רישום מלא של כל העסקאות בבלוקצ'יין.</td>
+</tr>
+<tr data-cat="vrar">
+  <td class="cmd">EnterVR</td>
+  <td>כניסה ל־VR</td>
+  <td class="desc">מפעיל מצב מציאות מדומה במערכת.</td>
+</tr>
+<tr data-cat="vrar">
+  <td class="cmd">Overlay</td>
+  <td>שכבת AR</td>
+  <td class="desc">מציג מידע נוסף על גבי העולם האמיתי.</td>
+</tr>
+<tr data-cat="vrar">
+  <td class="cmd">Interact</td>
+  <td>אינטראקציה</td>
+  <td class="desc">מאפשר למשתמש לפעול עם אובייקטים וירטואליים.</td>
+</tr>
+<tr data-cat="vrar">
+  <td class="cmd">Scene</td>
+  <td>סצנה</td>
+  <td class="desc">סביבה וירטואלית שמוצגת במציאות מדומה.</td>
+</tr>
+<tr data-cat="vrar">
+  <td class="cmd">Avatar</td>
+  <td>אווטאר</td>
+  <td class="desc">דמות וירטואלית שמייצגת את המשתמש.</td>
+</tr>
+<tr data-cat="vrar">
+  <td class="cmd">Gesture</td>
+  <td>מחווה</td>
+  <td class="desc">תנועה פיזית שמפעילה פעולה במציאות מדומה/רבודה.</td>
+</tr>
+<tr data-cat="vrar">
+  <td class="cmd">Headset</td>
+  <td>קסדה</td>
+  <td class="desc">מכשיר שמציג את חוויית המציאות המדומה.</td>
+</tr>
+<tr data-cat="vrar">
+  <td class="cmd">Calibration</td>
+  <td>כיול</td>
+  <td class="desc">מכוון את המערכת להתאמה למשתמש.</td>
+</tr>
+<tr data-cat="game">
+  <td class="cmd">StartGame</td>
+  <td>התחל משחק</td>
+  <td class="desc">מפעיל משחק חדש או סשן משחק.</td>
+</tr>
+<tr data-cat="game">
+  <td class="cmd">LoadLevel</td>
+  <td>טען שלב</td>
+  <td class="desc">מעלה שלב או מפה מסוימת במשחק.</td>
+</tr>
+<tr data-cat="game">
+  <td class="cmd">Score</td>
+  <td>ניקוד</td>
+  <td class="desc">מציג או משנה את הניקוד של השחקן.</td>
+</tr>
+<tr data-cat="game">
+  <td class="cmd">Player</td>
+  <td>שחקן</td>
+  <td class="desc">מייצג את המשתמש או דמות במשחק.</td>
+</tr>
+<tr data-cat="game">
+  <td class="cmd">Enemy</td>
+  <td>אויב</td>
+  <td class="desc">דמות או אובייקט שמתנגד לשחקן.</td>
+</tr>
+<tr data-cat="game">
+  <td class="cmd">Inventory</td>
+  <td>ציוד</td>
+  <td class="desc">רשימת פריטים שהשחקן מחזיק.</td>
+</tr>
+<tr data-cat="game">
+  <td class="cmd">SaveGame</td>
+  <td>שמור משחק</td>
+  <td class="desc">שומר את מצב המשחק להמשך.</td>
+</tr>
+<tr data-cat="game">
+  <td class="cmd">LoadGame</td>
+  <td>טען משחק</td>
+  <td class="desc">מעלה משחק שמור מהעבר.</td>
+</tr>
+<tr data-cat="smarthome">
+  <td class="cmd">LightOn</td>
+  <td>הדלק אור</td>
+  <td class="desc">מדליק תאורה בבית.</td>
+</tr>
+<tr data-cat="smarthome">
+  <td class="cmd">LightOff</td>
+  <td>כבה אור</td>
+  <td class="desc">מכבה תאורה בבית.</td>
+</tr>
+<tr data-cat="smarthome">
+  <td class="cmd">Thermostat</td>
+  <td>תרמוסטט</td>
+  <td class="desc">מגדיר את טמפרטורת הבית.</td>
+</tr>
+<tr data-cat="smarthome">
+  <td class="cmd">LockDoor</td>
+  <td>נעל דלת</td>
+  <td class="desc">נועל את דלת הבית.</td>
+</tr>
+<tr data-cat="smarthome">
+  <td class="cmd">UnlockDoor</td>
+  <td>פתח דלת</td>
+  <td class="desc">פותח את דלת הבית.</td>
+</tr>
+<tr data-cat="smarthome">
+  <td class="cmd">CameraOn</td>
+  <td>הפעל מצלמה</td>
+  <td class="desc">מפעיל מצלמות אבטחה בבית.</td>
+</tr>
+<tr data-cat="smarthome">
+  <td class="cmd">CameraOff</td>
+  <td>כבה מצלמה</td>
+  <td class="desc">מכבה מצלמות אבטחה בבית.</td>
+</tr>
+<tr data-cat="smarthome">
+  <td class="cmd">Alarm</td>
+  <td>אזעקה</td>
+  <td class="desc">מפעיל או מכבה מערכת אזעקה.</td>
+</tr>
+<tr data-cat="transportation">
+  <td class="cmd">Navigate</td>
+  <td>נווט</td>
+  <td class="desc">מחשב מסלול ליעד מסוים.</td>
+</tr>
+<tr data-cat="transportation">
+  <td class="cmd">ParkAssist</td>
+  <td>סיוע חניה</td>
+  <td class="desc">עוזר לרכב להחנות בצורה אוטומטית.</td>
+</tr>
+<tr data-cat="transportation">
+  <td class="cmd">ChargeEV</td>
+  <td>טעינת רכב חשמלי</td>
+  <td class="desc">מתחיל או עוקב אחרי טעינת רכב חשמלי.</td>
+</tr>
+<tr data-cat="transportation">
+  <td class="cmd">TrafficUpdate</td>
+  <td>עדכון תנועה</td>
+  <td class="desc">מציג מידע על מצב התנועה בזמן אמת.</td>
+</tr>
+<tr data-cat="transportation">
+  <td class="cmd">AutoDrive</td>
+  <td>נהיגה אוטונומית</td>
+  <td class="desc">מפעיל מצב נהיגה אוטונומית ברכב.</td>
+</tr>
+<tr data-cat="transportation">
+  <td class="cmd">EmergencyBrake</td>
+  <td>בלימת חירום</td>
+  <td class="desc">מפעיל בלימה אוטומטית במקרה של סכנה.</td>
+</tr>
+<tr data-cat="transportation">
+  <td class="cmd">FleetManage</td>
+  <td>ניהול צי רכבים</td>
+  <td class="desc">מנהל קבוצת רכבים חכמים במערכת אחת.</td>
+</tr>
+<tr data-cat="health">
+  <td class="cmd">TrackSteps</td>
+  <td>מעקב צעדים</td>
+  <td class="desc">מודד את מספר הצעדים של המשתמש.</td>
+</tr>
+<tr data-cat="health">
+  <td class="cmd">HeartRate</td>
+  <td>דופק</td>
+  <td class="desc">בודק את קצב הלב בזמן אמת.</td>
+</tr>
+<tr data-cat="health">
+  <td class="cmd">SleepMonitor</td>
+  <td>מעקב שינה</td>
+  <td class="desc">עוקב אחרי איכות ודפוסי השינה.</td>
+</tr>
+<tr data-cat="health">
+  <td class="cmd">MedicalRecord</td>
+  <td>רשומה רפואית</td>
+  <td class="desc">שומר ומציג נתונים רפואיים אישיים.</td>
+</tr>
+<tr data-cat="health">
+  <td class="cmd">Calories</td>
+  <td>קלוריות</td>
+  <td class="desc">מודד את כמות הקלוריות שנצרכו או נשרפו.</td>
+</tr>
+<tr data-cat="health">
+  <td class="cmd">Hydration</td>
+  <td>שתייה</td>
+  <td class="desc">עוקב אחרי צריכת נוזלים יומית.</td>
+</tr>
+<tr data-cat="health">
+  <td class="cmd">AlertHealth</td>
+  <td>התראת בריאות</td>
+  <td class="desc">שולח התראה במקרה של חריגה במדדים רפואיים.</td>
+</tr>
+<tr data-cat="energy">
+  <td class="cmd">SolarInput</td>
+  <td>קלט סולארי</td>
+  <td class="desc">מודד את כמות האנרגיה שמגיעה מלוחות סולאריים.</td>
+</tr>
+<tr data-cat="energy">
+  <td class="cmd">BatteryStorage</td>
+  <td>אחסון סוללה</td>
+  <td class="desc">שומר אנרגיה בסוללות לשימוש עתידי.</td>
+</tr>
+<tr data-cat="energy">
+  <td class="cmd">GridBalance</td>
+  <td>איזון רשת</td>
+  <td class="desc">מנהל את חלוקת האנרגיה בין מקורות שונים.</td>
+</tr>
+<tr data-cat="energy">
+  <td class="cmd">EnergySave</td>
+  <td>חיסכון באנרגיה</td>
+  <td class="desc">מפעיל מצב חסכוני להפחתת צריכת חשמל.</td>
+</tr>
+<tr data-cat="energy">
+  <td class="cmd">WindInput</td>
+  <td>קלט רוח</td>
+  <td class="desc">מודד את כמות האנרגיה שמגיעה מטורבינות רוח.</td>
+</tr>
+<tr data-cat="energy">
+  <td class="cmd">HydroInput</td>
+  <td>קלט מים</td>
+  <td class="desc">מודד את כמות האנרגיה שמגיעה ממקורות הידרו.</td>
+</tr>
+<tr data-cat="energy">
+  <td class="cmd">OptimizeUsage</td>
+  <td>מטב שימוש</td>
+  <td class="desc">משפר את צריכת האנרגיה לפי עומס וזמינות.</td>
+</tr>
+<tr data-cat="education">
+  <td class="cmd">Lesson</td>
+  <td>שיעור</td>
+  <td class="desc">יחידת לימוד דיגיטלית עם תוכן מובנה.</td>
+</tr>
+<tr data-cat="education">
+  <td class="cmd">Quiz</td>
+  <td>חידון</td>
+  <td class="desc">מערך שאלות לבדיקת ידע.</td>
+</tr>
+<tr data-cat="education">
+  <td class="cmd">Grade</td>
+  <td>ציון</td>
+  <td class="desc">מעריך את ביצועי התלמיד ומעניק ציון.</td>
+</tr>
+<tr data-cat="education">
+  <td class="cmd">VirtualClass</td>
+  <td>כיתה וירטואלית</td>
+  <td class="desc">סביבת לימוד מקוונת עם תלמידים ומורה.</td>
+</tr>
+<tr data-cat="education">
+  <td class="cmd">Assignment</td>
+  <td>מטלה</td>
+  <td class="desc">משימה לימודית שהתלמיד צריך לבצע.</td>
+</tr>
+<tr data-cat="education">
+  <td class="cmd">Certificate</td>
+  <td>תעודה</td>
+  <td class="desc">מסמך דיגיטלי שמאשר סיום קורס או שיעור.</td>
+</tr>
+<tr data-cat="education">
+  <td class="cmd">Discussion</td>
+  <td>דיון</td>
+  <td class="desc">פורום או שיחה קבוצתית בנושאי לימוד.</td>
+</tr>
+<tr data-cat="ecommerce">
+  <td class="cmd">AddToCart</td>
+  <td>הוסף לעגלה</td>
+  <td class="desc">מוסיף מוצר לעגלת הקניות.</td>
+</tr>
+<tr data-cat="ecommerce">
+  <td class="cmd">Checkout</td>
+  <td>סיום קנייה</td>
+  <td class="desc">מתקדם לתשלום וסיום ההזמנה.</td>
+</tr>
+<tr data-cat="ecommerce">
+  <td class="cmd">Payment</td>
+  <td>תשלום</td>
+  <td class="desc">מבצע עסקת תשלום עבור מוצרים.</td>
+</tr>
+<tr data-cat="ecommerce">
+  <td class="cmd">OrderStatus</td>
+  <td>מצב הזמנה</td>
+  <td class="desc">בודק את מצב ההזמנה (נשלחה, בדרך, סופקה).</td>
+</tr>
+<tr data-cat="ecommerce">
+  <td class="cmd">Wishlist</td>
+  <td>רשימת משאלות</td>
+  <td class="desc">שומר מוצרים לרכישה עתידית.</td>
+</tr>
+<tr data-cat="ecommerce">
+  <td class="cmd">Discount</td>
+  <td>הנחה</td>
+  <td class="desc">מפעיל קופון או הנחה על מוצר.</td>
+</tr>
+<tr data-cat="ecommerce">
+  <td class="cmd">ReturnItem</td>
+  <td>החזר מוצר</td>
+  <td class="desc">מתחיל תהליך החזרת מוצר שנרכש.</td>
+</tr>
+<tr data-cat="digitalart">
+  <td class="cmd">Draw</td>
+  <td>צייר</td>
+  <td class="desc">יוצר ציור דיגיטלי באמצעות כלים גרפיים.</td>
+</tr>
+<tr data-cat="digitalart">
+  <td class="cmd">Paint</td>
+  <td>צבע</td>
+  <td class="desc">מוסיף צבעים או אפקטים ליצירה דיגיטלית.</td>
+</tr>
+<tr data-cat="digitalart">
+  <td class="cmd">Filter</td>
+  <td>פילטר</td>
+  <td class="desc">מוסיף אפקטים מיוחדים לתמונה או ציור.</td>
+</tr>
+<tr data-cat="digitalart">
+  <td class="cmd">Gallery</td>
+  <td>גלריה</td>
+  <td class="desc">מציג אוסף יצירות דיגיטליות.</td>
+</tr>
+<tr data-cat="digitalart">
+  <td class="cmd">Layer</td>
+  <td>שכבה</td>
+  <td class="desc">מנהל שכבות שונות ביצירה גרפית.</td>
+</tr>
+<tr data-cat="digitalart">
+  <td class="cmd">Brush</td>
+  <td>מברשת</td>
+  <td class="desc">כלי ציור עם סגנונות שונים.</td>
+</tr>
+<tr data-cat="digitalart">
+  <td class="cmd">ExportArt</td>
+  <td>ייצא יצירה</td>
+  <td class="desc">שומר את היצירה בפורמט דיגיטלי.</td>
+</tr>
+<tr data-cat="music">
+  <td class="cmd">Compose</td>
+  <td>הלחנה</td>
+  <td class="desc">יוצר יצירה מוזיקלית חדשה.</td>
+</tr>
+<tr data-cat="music">
+  <td class="cmd">Mix</td>
+  <td>מיקס</td>
+  <td class="desc">משלב ערוצי שמע שונים ליצירה אחת.</td>
+</tr>
+<tr data-cat="music">
+  <td class="cmd">Instrument</td>
+  <td>כלי נגינה</td>
+  <td class="desc">מוסיף או משנה צלילי כלי נגינה ביצירה.</td>
+</tr>
+<tr data-cat="music">
+  <td class="cmd">Lyrics</td>
+  <td>מילים</td>
+  <td class="desc">כותב או מוסיף מילים לשיר.</td>
+</tr>
+<tr data-cat="music">
+  <td class="cmd">RecordAudio</td>
+  <td>הקלט שמע</td>
+  <td class="desc">מקליט קטעי קול או נגינה.</td>
+</tr>
+<tr data-cat="music">
+  <td class="cmd">Master</td>
+  <td>מאסטרינג</td>
+  <td class="desc">משפר את איכות השמע הסופית של יצירה.</td>
+</tr>
+<tr data-cat="music">
+  <td class="cmd">Playlist</td>
+  <td>רשימת השמעה</td>
+  <td class="desc">יוצר או מנהל רשימת שירים להשמעה.</td>
+</tr>
+<tr data-cat="film">
+  <td class="cmd">RecordVideo</td>
+  <td>הקלט וידאו</td>
+  <td class="desc">מקליט סרטון או קטע וידאו חדש.</td>
+</tr>
+<tr data-cat="film">
+  <td class="cmd">EditClip</td>
+  <td>ערוך קליפ</td>
+  <td class="desc">מבצע עריכה בקטע וידאו.</td>
+</tr>
+<tr data-cat="film">
+  <td class="cmd">AddSubtitle</td>
+  <td>הוסף כתוביות</td>
+  <td class="desc">מוסיף כתוביות לסרטון או סרט.</td>
+</tr>
+<tr data-cat="film">
+  <td class="cmd">RenderMovie</td>
+  <td>עיבוד סרט</td>
+  <td class="desc">יוצר גרסה סופית של סרט או קליפ.</td>
+</tr>
+<tr data-cat="film">
+  <td class="cmd">SceneCut</td>
+  <td>חיתוך סצנה</td>
+  <td class="desc">מפריד או מסיר חלק מסצנה בסרט.</td>
+</tr>
+<tr data-cat="film">
+  <td class="cmd">Transition</td>
+  <td>מעבר</td>
+  <td class="desc">מוסיף אפקט מעבר בין סצנות.</td>
+</tr>
+<tr data-cat="film">
+  <td class="cmd">Soundtrack</td>
+  <td>פסקול</td>
+  <td class="desc">מוסיף או משנה מוזיקה בסרט.</td>
+</tr>
+<tr data-cat="film">
+  <td class="cmd">Storyboard</td>
+  <td>סטוריבורד</td>
+  <td class="desc">יוצר תרשים חזותי של סצנות הסרט.</td>
+</tr>
+<tr data-cat="sports">
+  <td class="cmd">StartWorkout</td>
+  <td>התחל אימון</td>
+  <td class="desc">מפעיל תוכנית אימון או פעילות גופנית.</td>
+</tr>
+<tr data-cat="sports">
+  <td class="cmd">TrackRun</td>
+  <td>מעקב ריצה</td>
+  <td class="desc">מודד מרחק, זמן ומהירות בריצה.</td>
+</tr>
+<tr data-cat="sports">
+  <td class="cmd">LogExercise</td>
+  <td>רישום פעילות</td>
+  <td class="desc">שומר נתוני פעילות גופנית ביומן.</td>
+</tr>
+<tr data-cat="sports">
+  <td class="cmd">TeamStats</td>
+  <td>סטטיסטיקת קבוצה</td>
+  <td class="desc">מציג נתונים על ביצועי קבוצת ספורט.</td>
+</tr>
+<tr data-cat="sports">
+  <td class="cmd">Competition</td>
+  <td>תחרות</td>
+  <td class="desc">מנהל אירוע ספורטיבי או תחרות.</td>
+</tr>
+<tr data-cat="sports">
+  <td class="cmd">CoachTips</td>
+  <td>עצות מאמן</td>
+  <td class="desc">מספק הנחיות לשיפור ביצועים.</td>
+</tr>
+<tr data-cat="sports">
+  <td class="cmd">Recovery</td>
+  <td>התאוששות</td>
+  <td class="desc">ממליץ על פעולות לשיקום אחרי אימון.</td>
+</tr>
+<tr data-cat="cooking">
+  <td class="cmd">Recipe</td>
+  <td>מתכון</td>
+  <td class="desc">מציג הוראות להכנת מנה מסוימת.</td>
+</tr>
+<tr data-cat="cooking">
+  <td class="cmd">Cook</td>
+  <td>בשל</td>
+  <td class="desc">מפעיל תהליך בישול לפי מתכון.</td>
+</tr>
+<tr data-cat="cooking">
+  <td class="cmd">Ingredient</td>
+  <td>מרכיב</td>
+  <td class="desc">מוסיף או מציג רכיב במתכון.</td>
+</tr>
+<tr data-cat="cooking">
+  <td class="cmd">Nutrition</td>
+  <td>ערכים תזונתיים</td>
+  <td class="desc">מציג מידע על ערכים תזונתיים של מנה.</td>
+</tr>
+<tr data-cat="cooking">
+  <td class="cmd">MealPlan</td>
+  <td>תפריט</td>
+  <td class="desc">יוצר תוכנית ארוחות לפי צרכים אישיים.</td>
+</tr>
+<tr data-cat="cooking">
+  <td class="cmd">ShoppingList</td>
+  <td>רשימת קניות</td>
+  <td class="desc">מכין רשימת רכיבים לקנייה.</td>
+</tr>
+<tr data-cat="cooking">
+  <td class="cmd">TimerCook</td>
+  <td>טיימר בישול</td>
+  <td class="desc">מגדיר זמן בישול למנה.</td>
+</tr>
+<tr data-cat="social">
+  <td class="cmd">Post</td>
+  <td>פרסם</td>
+  <td class="desc">מעלה תוכן חדש לרשת חברתית.</td>
+</tr>
+<tr data-cat="social">
+  <td class="cmd">Like</td>
+  <td>אהבתי</td>
+  <td class="desc">מסמן תוכן כאהוב או מועדף.</td>
+</tr>
+<tr data-cat="social">
+  <td class="cmd">Share</td>
+  <td>שתף</td>
+  <td class="desc">מפיץ תוכן לחברים או לעוקבים נוספים.</td>
+</tr>
+<tr data-cat="social">
+  <td class="cmd">Comment</td>
+  <td>תגובה</td>
+  <td class="desc">מוסיף תגובה לפוסט או תוכן.</td>
+</tr>
+<tr data-cat="social">
+  <td class="cmd">Follow</td>
+  <td>עקוב</td>
+  <td class="desc">מתחיל לעקוב אחרי משתמש או עמוד.</td>
+</tr>
+<tr data-cat="social">
+  <td class="cmd">Unfollow</td>
+  <td>הפסק לעקוב</td>
+  <td class="desc">מפסיק לעקוב אחרי משתמש או עמוד.</td>
+</tr>
+<tr data-cat="social">
+  <td class="cmd">Message</td>
+  <td>הודעה פרטית</td>
+  <td class="desc">שולח הודעה ישירה למשתמש.</td>
+</tr>
+<tr data-cat="marketing">
+  <td class="cmd">Campaign</td>
+  <td>קמפיין</td>
+  <td class="desc">יוצר או מנהל מסע פרסום.</td>
+</tr>
+<tr data-cat="marketing">
+  <td class="cmd">Ad</td>
+  <td>מודעה</td>
+  <td class="desc">מעלה מודעת פרסום בפלטפורמה.</td>
+</tr>
+<tr data-cat="marketing">
+  <td class="cmd">TargetAudience</td>
+  <td>קהלי יעד</td>
+  <td class="desc">מגדיר את הקהל שאליו הפרסום מיועד.</td>
+</tr>
+<tr data-cat="marketing">
+  <td class="cmd">Analytics</td>
+  <td>אנליטיקה</td>
+  <td class="desc">בודק נתוני ביצועי פרסום.</td>
+</tr>
+<tr data-cat="marketing">
+  <td class="cmd">Budget</td>
+  <td>תקציב</td>
+  <td class="desc">מגדיר את התקציב למסע פרסום.</td>
+</tr>
+<tr data-cat="marketing">
+  <td class="cmd">Conversion</td>
+  <td>המרה</td>
+  <td class="desc">מודד כמה משתמשים ביצעו פעולה בעקבות פרסום.</td>
+</tr>
+<tr data-cat="marketing">
+  <td class="cmd">Branding</td>
+  <td>מיתוג</td>
+  <td class="desc">מגדיר את זהות המותג בפרסום.</td>
+</tr>
+<tr data-cat="legal">
+  <td class="cmd">Contract</td>
+  <td>חוזה</td>
+  <td class="desc">מסמך משפטי שמגדיר הסכמות בין צדדים.</td>
+</tr>
+<tr data-cat="legal">
+  <td class="cmd">Agreement</td>
+  <td>הסכם</td>
+  <td class="desc">הבנה או התחייבות בין שני צדדים.</td>
+</tr>
+<tr data-cat="legal">
+  <td class="cmd">CaseFile</td>
+  <td>תיק משפטי</td>
+  <td class="desc">אוסף מסמכים וראיות בתיק משפטי.</td>
+</tr>
+<tr data-cat="legal">
+  <td class="cmd">Evidence</td>
+  <td>ראיות</td>
+  <td class="desc">חומר שמוכיח טענה משפטית.</td>
+</tr>
+<tr data-cat="legal">
+  <td class="cmd">Verdict</td>
+  <td>פסק דין</td>
+  <td class="desc">החלטה סופית של בית משפט.</td>
+</tr>
+<tr data-cat="legal">
+  <td class="cmd">Appeal</td>
+  <td>ערעור</td>
+  <td class="desc">בקשה לשנות החלטה משפטית קיימת.</td>
+</tr>
+<tr data-cat="legal">
+  <td class="cmd">Witness</td>
+  <td>עד</td>
+  <td class="desc">אדם שמעיד בבית משפט.</td>
+</tr>
+<tr data-cat="science">
+  <td class="cmd">Experiment</td>
+  <td>ניסוי</td>
+  <td class="desc">בדיקה מדעית שמטרתה לאמת או להפריך תאוריה.</td>
+</tr>
+<tr data-cat="science">
+  <td class="cmd">Theory</td>
+  <td>תיאוריה</td>
+  <td class="desc">הסבר מדעי לתופעה מסוימת.</td>
+</tr>
+<tr data-cat="science">
+  <td class="cmd">LabTest</td>
+  <td>בדיקת מעבדה</td>
+  <td class="desc">בדיקה מדעית שמבוצעת בסביבה מבוקרת.</td>
+</tr>
+<tr data-cat="science">
+  <td class="cmd">Innovation</td>
+  <td>חדשנות</td>
+  <td class="desc">פיתוח רעיון או טכנולוגיה חדשה.</td>
+</tr>
+<tr data-cat="science">
+  <td class="cmd">Discovery</td>
+  <td>תגלית</td>
+  <td class="desc">מציאת ידע או תופעה חדשה.</td>
+</tr>
+<tr data-cat="science">
+  <td class="cmd">Research</td>
+  <td>מחקר</td>
+  <td class="desc">תהליך איסוף וניתוח מידע מדעי.</td>
+</tr>
+<tr data-cat="science">
+  <td class="cmd">Publish</td>
+  <td>פרסום</td>
+  <td class="desc">הצגת תוצאות מחקר לציבור או לקהילה מדעית.</td>
+</tr>
+<tr data-cat="space">
+  <td class="cmd">Launch</td>
+  <td>שיגור</td>
+  <td class="desc">מפעיל שיגור חללית או טיל לחלל.</td>
+</tr>
+<tr data-cat="space">
+  <td class="cmd">Orbit</td>
+  <td>מסלול</td>
+  <td class="desc">מגדיר או מציג את מסלול החללית סביב כוכב לכת.</td>
+</tr>
+<tr data-cat="space">
+  <td class="cmd">Telescope</td>
+  <td>טלסקופ</td>
+  <td class="desc">צופה בעצמים שמימיים מרחוק.</td>
+</tr>
+<tr data-cat="space">
+  <td class="cmd">Mission</td>
+  <td>משימה</td>
+  <td class="desc">מנהל משימה חללית עם מטרות מוגדרות.</td>
+</tr>
+<tr data-cat="space">
+  <td class="cmd">Satellite</td>
+  <td>לוויין</td>
+  <td class="desc">מפעיל או עוקב אחרי לוויין בחלל.</td>
+</tr>
+<tr data-cat="space">
+  <td class="cmd">Asteroid</td>
+  <td>אסטרואיד</td>
+  <td class="desc">בודק או עוקב אחרי מסלול אסטרואיד.</td>
+</tr>
+<tr data-cat="space">
+  <td class="cmd">Galaxy</td>
+  <td>גלקסיה</td>
+  <td class="desc">מציג מידע על גלקסיות שונות ביקום.</td>
+</tr><tr data-cat="environment">
+  <td class="cmd">Recycle</td>
+  <td>מיחזור</td>
+  <td class="desc">מפעיל תהליך מיחזור חומרים לשימוש חוזר.</td>
+</tr>
+<tr data-cat="environment">
+  <td class="cmd">PollutionCheck</td>
+  <td>בדיקת זיהום</td>
+  <td class="desc">מודד את רמת הזיהום בסביבה.</td>
+</tr>
+<tr data-cat="environment">
+  <td class="cmd">PlantTree</td>
+  <td>נטיעת עץ</td>
+  <td class="desc">מוסיף עץ חדש לשיפור איכות הסביבה.</td>
+</tr>
+<tr data-cat="environment">
+  <td class="cmd">ClimateData</td>
+  <td>נתוני אקלים</td>
+  <td class="desc">מציג מידע על שינויי אקלים ומזג אוויר.</td>
+</tr>
+<tr data-cat="environment">
+  <td class="cmd">Conserve</td>
+  <td>שימור</td>
+  <td class="desc">מפעיל תוכנית לשימור משאבי טבע.</td>
+</tr>
+<tr data-cat="environment">
+  <td class="cmd">EcoAlert</td>
+  <td>התראה סביבתית</td>
+  <td class="desc">שולח התראה במקרה של סכנה אקולוגית.</td>
+</tr>
+<tr data-cat="environment">
+  <td class="cmd">Wildlife</td>
+  <td>חיות בר</td>
+  <td class="desc">עוקב אחרי מצב חיות בר ושמורות טבע.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Bold</td>
+  <td>הדגשה</td>
+  <td class="desc">מדגיש טקסט. דוגמה: <b>זה טקסט מודגש</b></td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Italic</td>
+  <td>נטוי</td>
+  <td class="desc">מוסיף סגנון נטוי. דוגמה: <i>זה טקסט נטוי</i></td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Underline</td>
+  <td>קו תחתון</td>
+  <td class="desc">מוסיף קו תחתון. דוגמה: <u>זה טקסט עם קו תחתון</u></td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">AlignCenter</td>
+  <td>יישור למרכז</td>
+  <td class="desc">מיישר טקסט למרכז. דוגמה:  
+      ─────────  
+      טקסט באמצע הדף  
+      ─────────</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">InsertTable</td>
+  <td>הוסף טבלה</td>
+  <td class="desc">יוצר טבלה. דוגמה:  
+      | שם | גיל | עיר |  
+      |----|-----|-----|  
+      | דנה | 25 | תל אביב |</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">InsertImage</td>
+  <td>הוסף תמונה</td>
+  <td class="desc">מכניס תמונה למסמך. דוגמה: תמונה של לוגו החברה באמצע המסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">HeaderFooter</td>
+  <td>כותרת עליונה/תחתונה</td>
+  <td class="desc">מוסיף טקסט קבוע בראש או בתחתית הדף. דוגמה: מספרי עמודים בתחתית.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">TableOfContents</td>
+  <td>תוכן עניינים</td>
+  <td class="desc">יוצר תוכן עניינים אוטומטי. דוגמה:  
+      1. מבוא  
+      2. רקע  
+      3. סיכום</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">TrackChanges</td>
+  <td>מעקב שינויים</td>
+  <td class="desc">מציג שינויים שנעשו במסמך. דוגמה: טקסט שנמחק מופיע בקו חוצה, טקסט חדש בצבע אדום.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Comment</td>
+  <td>הוסף הערה</td>
+  <td class="desc">מוסיף הערה לשיתוף פעולה. דוגמה: הערה בצד המסמך – "נא לבדוק את הנתון הזה".</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">SaveAsPDF</td>
+  <td>שמור כ־PDF</td>
+  <td class="desc">שומר את המסמך בפורמט PDF מוכן לשליחה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">MailMerge</td>
+  <td>מיזוג דואר</td>
+  <td class="desc">שולח מכתבים אישיים ללקוחות מתוך מסד נתונים.  
+      דוגמה: "שלום יוסי, תודה על רכישתך" → נשלח אוטומטית לכל לקוח עם שמו.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Macro</td>
+  <td>מאקרו</td>
+  <td class="desc">מקליט פעולות שחוזרות על עצמן ומריץ אותן בלחיצה אחת.  
+      דוגמה: עיצוב טקסט + הוספת לוגו → מאקרו עושה זאת אוטומטית.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Footnote</td>
+  <td>הערת שוליים</td>
+  <td class="desc">מוסיף הערה אקדמית בתחתית העמוד.  
+      דוגמה: "ראה מקור [1]" → הערה מופיעה בתחתית הדף.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">SmartArt</td>
+  <td>תרשים חכם</td>
+  <td class="desc">יוצר תרשים גרפי להצגת מידע.  
+      דוגמה: תרשים זרימה של תהליך עבודה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Styles</td>
+  <td>סגנונות</td>
+  <td class="desc">שומר על עיצוב אחיד במסמך ארוך.  
+      דוגמה: כל כותרת ראשית באותו גודל וצבע.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">NavigationPane</td>
+  <td>חלונית ניווט</td>
+  <td class="desc">מאפשר מעבר מהיר בין כותרות במסמך גדול.  
+      דוגמה: קפיצה ישירה לפרק 5 בלחיצה אחת.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">CrossReference</td>
+  <td>הפניה צולבת</td>
+  <td class="desc">יוצר קישור פנימי למסמך.  
+      דוגמה: "ראה טבלה 3 בעמוד 12".</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Index</td>
+  <td>אינדקס</td>
+  <td class="desc">יוצר רשימת מונחים בסוף המסמך.  
+      דוגמה: "חוזה – עמודים 4, 7, 12".</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">FormField</td>
+  <td>שדה טופס</td>
+  <td class="desc">יוצר שדה למילוי (טקסט, מספר, תאריך).</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">DropDown</td>
+  <td>רשימה נפתחת</td>
+  <td class="desc">מאפשר לבחור ערך מתוך רשימה מוכנה מראש.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">CheckBox</td>
+  <td>תיבת סימון</td>
+  <td class="desc">מאפשר לסמן/לבטל אפשרות בטופס.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">DatePicker</td>
+  <td>בוחר תאריך</td>
+  <td class="desc">חלון בחירה של תאריך בלוח שנה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Template</td>
+  <td>תבנית</td>
+  <td class="desc">מודל מוכן מראש למסמך (קורות חיים, חוזה, טופס הרשמה).</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">MacroDialog</td>
+  <td>חלון מאקרו</td>
+  <td class="desc">יוצר חלון מותאם אישית עם פקודות לבחירה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Watermark</td>
+  <td>סימן מים</td>
+  <td class="desc">מוסיף סימן מים (לוגו/טקסט) ברקע המסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">ProtectDocument</td>
+  <td>הגנת מסמך</td>
+  <td class="desc">מונע עריכה או שינוי במסמך באמצעות סיסמה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">CompareDocuments</td>
+  <td>השוואת מסמכים</td>
+  <td class="desc">משווה בין שני מסמכים ומציג את ההבדלים.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">MergeDocuments</td>
+  <td>מיזוג מסמכים</td>
+  <td class="desc">מאחד כמה מסמכים למסמך אחד.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Translate</td>
+  <td>תרגום</td>
+  <td class="desc">מתרגם טקסט לשפה אחרת ישירות מתוך Word.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Dictate</td>
+  <td>הכתבה קולית</td>
+  <td class="desc">ממיר דיבור לטקסט במסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">AutoCorrect</td>
+  <td>תיקון אוטומטי</td>
+  <td class="desc">מתקן שגיאות כתיב תוך כדי כתיבה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">OutlineView</td>
+  <td>תצוגת מתאר</td>
+  <td class="desc">מאפשר לראות את מבנה המסמך לפי כותרות ולארגן אותו מחדש.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">DraftView</td>
+  <td>תצוגת טיוטה</td>
+  <td class="desc">מציג את המסמך בפשטות לצורך עריכה מהירה בלי עיצוב מלא.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">NavigationPane</td>
+  <td>חלונית ניווט</td>
+  <td class="desc">מאפשר מעבר מהיר בין חלקי המסמך לפי כותרות או חיפושים.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">StylesPane</td>
+  <td>חלונית סגנונות</td>
+  <td class="desc">מציגה את כל הסגנונות במסמך ומאפשרת לנהל אותם.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Theme</td>
+  <td>ערכת נושא</td>
+  <td class="desc">מגדיר צבעים, גופנים ועיצובים אחידים למסמך כולו.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">SmartLookup</td>
+  <td>חיפוש חכם</td>
+  <td class="desc">מחפש מידע על מילה או ביטוי ישירות מהמסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">ReadAloud</td>
+  <td>קריאה בקול</td>
+  <td class="desc">מקריא את הטקסט במסמך באמצעות מנוע דיבור.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">AccessibilityChecker</td>
+  <td>בודק נגישות</td>
+  <td class="desc">בודק שהמסמך נגיש לאנשים עם מוגבלויות.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">LanguageTools</td>
+  <td>כלי שפה</td>
+  <td class="desc">בודק דקדוק, מציע תיקונים ומאפשר תרגום.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">InkTools</td>
+  <td>כלי דיו</td>
+  <td class="desc">מאפשר לכתוב או לצייר בעזרת עט דיגיטלי ישירות במסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Equation</td>
+  <td>משוואה</td>
+  <td class="desc">מוסיף נוסחאות מתמטיות למסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Symbols</td>
+  <td>סמלים</td>
+  <td class="desc">מכניס תווים מיוחדים או סימנים מתמטיים.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Hyperlink</td>
+  <td>קישור</td>
+  <td class="desc">יוצר קישור למסמך אחר או לאתר אינטרנט.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Bookmark</td>
+  <td>סימנייה</td>
+  <td class="desc">מסמן נקודה במסמך כדי לחזור אליה במהירות.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">MacroSecurity</td>
+  <td>אבטחת מאקרו</td>
+  <td class="desc">מגדיר רמות אבטחה להפעלת מאקרו במסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">DeveloperTab</td>
+  <td>לשונית מפתחים</td>
+  <td class="desc">פותח אפשרויות מתקדמות ליצירת טפסים, קוד VBA ואוטומציה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">CompareVersions</td>
+  <td>השוואת גרסאות</td>
+  <td class="desc">מציג הבדלים בין גרסאות שונות של אותו מסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">RestrictEditing</td>
+  <td>הגבלת עריכה</td>
+  <td class="desc">מאפשר להגדיר אילו חלקים במסמך ניתנים לעריכה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">DigitalSignature</td>
+  <td>חתימה דיגיטלית</td>
+  <td class="desc">מוסיף חתימה דיגיטלית למסמך לאימות מקוריות.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">CloudSave</td>
+  <td>שמירה בענן</td>
+  <td class="desc">שומר את המסמך ב־OneDrive או SharePoint לשיתוף קל.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Citation</td>
+  <td>ציטוט</td>
+  <td class="desc">מוסיף ציטוט אקדמי לפי סגנון (APA, MLA, Chicago). דוגמה: (Smith, 2020).</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">SourceManager</td>
+  <td>ניהול מקורות</td>
+  <td class="desc">מאפשר להוסיף, לערוך ולנהל רשימת מקורות למחקר.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Bibliography</td>
+  <td>ביבליוגרפיה</td>
+  <td class="desc">יוצר רשימת מקורות אוטומטית בסוף המסמך לפי הציטוטים שהוזנו.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Footnote</td>
+  <td>הערת שוליים</td>
+  <td class="desc">מוסיף הערה אקדמית בתחתית העמוד. דוגמה: "ראה מקור [1]".</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Endnote</td>
+  <td>הערת סיום</td>
+  <td class="desc">מוסיף הערה בסוף המסמך במקום בתחתית העמוד.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">CrossReference</td>
+  <td>הפניה צולבת</td>
+  <td class="desc">יוצר קישור פנימי לטבלה, איור או כותרת אחרת במסמך. דוגמה: "ראה טבלה 3 בעמוד 12".</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Index</td>
+  <td>אינדקס ערכים</td>
+  <td class="desc">יוצר רשימת מונחים בסוף המסמך עם הפניות לעמודים. דוגמה: "חוזה – עמודים 4, 7, 12".</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">TableOfAuthorities</td>
+  <td>טבלת מקורות משפטיים</td>
+  <td class="desc">יוצר רשימה של מקורות משפטיים (חוקים, פסקי דין) עם הפניות למסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Caption</td>
+  <td>כיתוב</td>
+  <td class="desc">מוסיף כיתוב לאיורים, טבלאות או תמונות. דוגמה: "איור 1 – מבנה מערכת".</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">TableOfFigures</td>
+  <td>טבלת איורים</td>
+  <td class="desc">יוצר רשימה אוטומטית של כל האיורים והטבלאות במסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Bibliography</td>
+  <td>ביבליוגרפיה</td>
+  <td class="desc">יוצר רשימת מקורות אקדמית אוטומטית בסוף המסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Citation</td>
+  <td>ציטוט</td>
+  <td class="desc">מוסיף ציטוט אקדמי לפי סגנון (APA, MLA, Chicago).</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Footnote</td>
+  <td>הערת שוליים</td>
+  <td class="desc">מוסיף הערה אקדמית בתחתית העמוד.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Endnote</td>
+  <td>הערת סיום</td>
+  <td class="desc">מוסיף הערה בסוף המסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">CrossReference</td>
+  <td>הפניה צולבת</td>
+  <td class="desc">יוצר קישור פנימי לטבלה/איור/כותרת אחרת במסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Index</td>
+  <td>אינדקס</td>
+  <td class="desc">יוצר רשימת מונחים עם עמודים בסוף המסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Watermark</td>
+  <td>סימן מים</td>
+  <td class="desc">מוסיף טקסט/לוגו ברקע המסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">ProtectDocument</td>
+  <td>הגנת מסמך</td>
+  <td class="desc">מונע עריכה או שינוי במסמך באמצעות סיסמה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">CompareDocuments</td>
+  <td>השוואת מסמכים</td>
+  <td class="desc">משווה בין שני מסמכים ומציג את ההבדלים.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">MergeDocuments</td>
+  <td>מיזוג מסמכים</td>
+  <td class="desc">מאחד כמה מסמכים למסמך אחד.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Translate</td>
+  <td>תרגום</td>
+  <td class="desc">מתרגם טקסט לשפה אחרת ישירות מתוך Word.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Dictate</td>
+  <td>הכתבה קולית</td>
+  <td class="desc">ממיר דיבור לטקסט במסמך.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">AutoCorrect</td>
+  <td>תיקון אוטומטי</td>
+  <td class="desc">מתקן שגיאות כתיב תוך כדי כתיבה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">FormField</td>
+  <td>שדה טופס</td>
+  <td class="desc">יוצר שדה למילוי (טקסט, מספר, תאריך).</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">DropDown</td>
+  <td>רשימה נפתחת</td>
+  <td class="desc">מאפשר לבחור ערך מתוך רשימה מוכנה מראש.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">CheckBox</td>
+  <td>תיבת סימון</td>
+  <td class="desc">מאפשר לסמן/לבטל אפשרות בטופס.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">DatePicker</td>
+  <td>בוחר תאריך</td>
+  <td class="desc">חלון בחירה של תאריך בלוח שנה.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Macro</td>
+  <td>מאקרו</td>
+  <td class="desc">מקליט פעולות שחוזרות על עצמן ומריץ אותן בלחיצה אחת.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">MailMerge</td>
+  <td>מיזוג דואר</td>
+  <td class="desc">שולח מכתבים אישיים מתוך מסד נתונים.</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">Highlight</td>
+  <td>הדגשת טקסט</td>
+  <td class="desc">מדגיש טקסט בצבע צהוב. דוגמה: Selection.Range.HighlightColorIndex = wdYellow</td>
+</tr>
+
+<tr data-cat="word">
+  <td class="cmd">FontColor</td>
+  <td>צבע גופן</td>
+  <td class="desc">משנה צבע טקסט לאדום. דוגמה: Selection.Font.Color = wdColorRed</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">MergeCells</td>
+  <td>מיזוג תאים</td>
+  <td class="desc">מאחד שני תאים בטבלה. דוגמה: Selection.Tables(1).Cell(1,1).Merge Selection.Tables(1).Cell(1,2)</td>
+</tr>
+
+<tr data-cat="word">
+  <td class="cmd">AutoFit</td>
+  <td>התאמה אוטומטית</td>
+  <td class="desc">מתאים את רוחב הטבלה לתוכן. דוגמה: Selection.Tables(1).AutoFitBehavior wdAutoFitContent</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">TableOfFigures</td>
+  <td>טבלת איורים</td>
+  <td class="desc">יוצר רשימה של כל האיורים במסמך. דוגמה: ActiveDocument.TablesOfFigures.Add Range:=Selection.Range</td>
+</tr>
+
+<tr data-cat="word">
+  <td class="cmd">TableOfAuthorities</td>
+  <td>טבלת מקורות משפטיים</td>
+  <td class="desc">יוצר רשימה של מקורות משפטיים. דוגמה: ActiveDocument.TablesOfAuthorities.Add Selection.Range</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">DatePicker</td>
+  <td>בורר תאריך</td>
+  <td class="desc">מוסיף שדה בחירה של תאריך. דוגמה: ActiveDocument.ContentControls.Add wdContentControlDate</td>
+</tr>
+<tr data-cat="word">
+  <td class="cmd">DigitalSignature</td>
+  <td>חתימה דיגיטלית</td>
+  <td class="desc">מוסיף חתימה דיגיטלית למסמך. דוגמה: ActiveDocument.Signatures.Add</td>
+</tr>
+
+<tr data-cat="word">
+  <td class="cmd">RestrictEditing</td>
+  <td>הגבלת עריכה</td>
+  <td class="desc">מונע עריכה בחלקים מסוימים במסמך. דוגמה: ActiveDocument.Protect wdAllowOnlyReading</td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="count" id="count">מציג 6 פריטים</div>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const categorySelect = document.getElementById('category');
+    const clearBtn = document.getElementById('clear');
+    const table = document.getElementById('dict');
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    const count = document.getElementById('count');
+
+    function applyFilters() {
+      const q = searchInput.value.trim().toLowerCase();
+      const cat = categorySelect.value;
+      let visible = 0;
+
+      rows.forEach(tr => {
+        const tds = tr.querySelectorAll('td');
+        const english = tds[0].textContent.toLowerCase();
+        const hebrew = tds[1].textContent.toLowerCase();
+        const desc = tds[2].textContent.toLowerCase();
+        const matchText = !q || english.includes(q) || hebrew.includes(q) || desc.includes(q);
+        const matchCat = !cat || tr.dataset.cat === cat;
+        const show = matchText && matchCat;
+
+        tr.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      count.textContent = `מציג ${visible} פריטים`;
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    categorySelect.addEventListener('change', applyFilters);
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      categorySelect.value = '';
+      applyFilters();
+    });
+
+    // הדגשת מילות חיפוש בסיסית
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim();
+      rows.forEach(tr => tr.classList.remove('highlight'));
+      if (q.length >= 2) {
+        rows.forEach(tr => {
+          const text = tr.textContent.toLowerCase();
+          if (text.includes(q.toLowerCase())) {
+            tr.classList.add('highlight');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

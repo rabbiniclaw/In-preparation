@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>פקודות ה-BAT (Batch) + דוגמאות + השוואה ל-PowerShell</title>
+    <style>
+        body { font-family: "Segoe UI", Arial, sans-serif; margin: 40px; background: #f9f9f9; }
+        h1, h2 { text-align: center; color: #2c3e50; }
+        table { width: 100%; border-collapse: collapse; margin: 30px 0; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #bbb; padding: 12px; text-align: right; vertical-align: top; }
+        th { background-color: #3498db; color: white; }
+        tr:nth-child(even) { background-color: #f2f8ff; }
+        code { background: #eee; padding: 2px 6px; border-radius: 4px; direction: ltr; display: inline-block; }
+        .yes { color: green; font-weight: bold; }
+        .no  { color: #c0392b; }
+        .diff { color: #e67e22; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<h1>הפקודות של קבצי BAT (Batch) – בעברית + דוגמאות + PowerShell</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>פקודה</th>
+            <th>תיאור בעברית</th>
+            <th>דוגמה</th>
+            <th>קיים ב-PowerShell?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td><code>@echo off</code></td><td>מכבה את הצגת הפקודות עצמן בקונסולה</td><td><code>@echo off<br>echo שלום עולם!</code></td><td class="diff">לא חובה – PowerShell לא מציג פקודות אוטומטית</td></tr>
+        <tr><td><code>echo</code></td><td>מדפיס טקסט או מציג/מכבה הצגת פקודות</td><td><code>echo שלום לכולם!</code></td><td class="yes">Write-Output או פשוט לכתוב את הטקסט</td></tr>
+        <tr><td><code>echo.</code></td><td>מדפיס שורה ריקה</td><td><code>echo.</code></td><td class="yes">Write-Host ""</td></tr>
+        <tr><td><code>rem</code></td><td>הערה (לא מבוצעת)</td><td><code>rem זו הערה</code></td><td class="yes"># הערה ב-PowerShell</td></tr>
+        <tr><td><code>title</code></td><td>משנה את כותרת חלון ה-cmd</td><td><code>title הגיבוי שלי</code></td><td class="yes">$Host.UI.RawUI.WindowTitle = "כותרת"</td></tr>
+        <tr><td><code>cls</code></td><td>מנקה את המסך</td><td><code>cls</code></td><td class="yes">Clear-Host או cls עובד גם</td></tr>
+        <tr><td><code>pause</code></td><td>עוצר ומחכה שלחיצה על מקש</td><td><code>pause</code></td><td class="yes">Read-Host "לחץ Enter להמשך"</td></tr>
+        <tr><td><code>color</code></td><td>משנה צבעי רקע וטקסט</td><td><code>color 0a</code> (שחור + ירוק בהיר)</td><td class="diff">ב-PowerShell משתמשים ב-$Host.UI.RawUI</td></tr>
+        <tr><td><code>dir</code></td><td>מציג תוכן תיקייה</td><td><code>dir *.txt</code></td><td class="yes">Get-ChildItem או dir (alias)</td></tr>
+        <tr><td><code>cd</code> / <code>chdir</code></td><td>עובר לתיקייה אחרת</td><td><code>cd C:\Temp</code></td><td class="yes">Set-Location או cd</td></tr>
+        <tr><td><code>md</code> / <code>mkdir</code></td><td>יוצר תיקייה חדשה</td><td><code>mkdir Backup</code></td><td class="yes">New-Item -ItemType Directory או mkdir</td></tr>
+        <tr><td><code>rd</code> / <code>rmdir</code></td><td>מוחק תיקייה</td><td><code>rmdir /s /q OldFolder</code></td><td class="yes">Remove-Item או rd</td></tr>
+        <tr><td><code>copy</code></td><td>מעתיק קבצים</td><td><code>copy file.txt D:\Backup\</code></td><td class="yes">Copy-Item</td></tr>
+        <tr><td><code>xcopy</code></td><td>מעתיק מתקדם (תיקיות, הרשאות וכו')</td><td><code>xcopy C:\Data D:\Backup /s /e /h /i</code></td><td class="yes">Copy-Item -Recurse</td></tr>
+        <tr><td><code>move</code></td><td>מעביר או משנה שם קובץ/תיקייה</td><td><code>move old.txt new.txt</code></td><td class="yes">Move-Item</td></tr>
+        <tr><td><code>del</code> / <code>erase</code></td><td>מוחק קבצים</td><td><code>del *.tmp /q</code></td><td class="yes">Remove-Item או del</td></tr>
+        <tr><td><code>ren</code> / <code>rename</code></td><td>משנה שם קובץ</td><td><code>ren photo.jpg vacation.jpg</code></td><td class="yes">Rename-Item</td></tr>
+        <tr><td><code>if</code></td><td>תנאי</td><td><code>if exist file.txt echo הקובץ קיים!</code></td><td class="yes">if (Test-Path file.txt) { ... </td></tr>
+        <tr><td><code>else</code></td><td>חלק של תנאי (יחד עם if)</td><td><code>if exist a.txt (echo כן) else (echo לא)</code></td><td class="yes">else { ... }</td></tr>
+        <tr><td><code>goto</code></td><td>קפיצה לתווית</td><td><code>goto start</code></td><td class="no">לא מומלץ – משתמשים ב-functions</td></tr>
+        <tr><td><code>:label</code></td><td>תווית (ל-goto)</td><td><code>:start<br>echo שלום!</code></td><td class="no">לא קיים – משתמשים ב-functions</td></tr>
+        <tr><td><code>call</code></td><td>קורא לקובץ BAT אחר או לפונקציה</td><td><code>call backup.bat</code></td><td class="yes">.& .\backup.ps1</td></tr>
+        <tr><td><code>start</code></td><td>פותח חלון חדש או מפעיל תוכנה</td><td><code>start notepad.exe</code></td><td class="yes">Start-Process notepad.exe</td></tr>
+        <tr><td><code>timeout</code></td><td>מחכה מספר שניות</td><td><code>timeout /t 5</code></td><td class="yes">Start-Sleep -Seconds 5</td></tr>
+        <tr><td><code>ping</code></td><td>בודק חיבור ל-IP</td><td><code>ping 8.8.8.8</code></td><td class="yes">Test-Connection 8.8.8.8</td></tr>
+        <tr><td><code>ipconfig</code></td><td>מציג הגדרות רשת</td><td><code>ipconfig /all</code></td><td class="yes">Get-NetIPConfiguration</td></tr>
+        <tr><td><code>shutdown</code></td><td>כיבוי/אתחול מחשב</td><td><code>shutdown /s /t 0</code></td><td class="yes">Stop-Computer</td></tr>
+        <tr><td><code>taskkill</code></td><td>הורג תהליך</td><td><code>taskkill /im chrome.exe /f</code></td><td class="yes">Stop-Process -Name chrome</td></tr>
+        <tr><td><code>set</code></td><td>יוצר/מציג משתני סביבה</td><td><code>set name=יוסי<br>echo שלום %name%</code></td><td class="yes">$name = "יוסי"</td></tr>
+        <tr><td><code>for</code></td><td>לולאה על קבצים/מספרים</td><td><code>for %i in (*.txt) do echo %i</code></td><td class="yes">Get-ChildItem *.txt | ForEach-Object { $_.Name }</td></tr>
+        <tr><td><code>choice</code></td><td>בחירה של המשתמש (Y/N וכו')</td><td><code>choice /m "להמשיך"</code></td><td class="yes">Read-Host או פונקציות מתקדמות</td></tr>
+        <tr><td><code>exit</codd><td>יוצא מה-batch או סוגר חלון</td><td><code>exit /b 0</code></td><td class="yes">exit</td></tr>
+    </tbody>
+</table>
+
+<h2>טיפים חשובים</h2>
+<ul>
+    <li>בקובץ BAT אמיתי – במקום <code>%i</code> בלולאת for צריך לכתוב <code>%%i</code> (אלא אם כותבים ישירות ב-cmd).</li>
+    <li>ב-PowerShell כמעט כל הפקודות הישנות של cmd עדיין עובדות (dir, cd, copy וכו') כי הן alias-ים.</li>
+    <li>אבל הדרך המומלצת והחזקה ביותר כיום היא להפוך אוטומציה ב-Windows היא PowerShell!</li>
+</ul>
+
+</body>
+</html>
