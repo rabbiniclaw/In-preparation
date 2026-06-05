@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>רשת ואינטרנט - מדריך המחשב</title>
+    <title>רשת ואינטרנט - המדריך המלא</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -14,59 +14,53 @@
         <a href="index.html" class="btn-nav"><i class="fas fa-home"></i> בית</a>
     </div>
     <h1>🌐 רשת ואינטרנט</h1>
-    <p>ניהול חיבורי Wi-Fi, פתרון בעיות גלישה והגדרות רשת</p>
+    <p>ניהול כל סוגי החיבורים והגדרות הגלישה במקום אחד</p>
 </header>
 
 <div class="container">
-    
-    <!-- תת-נושא 1: חיבור אלחוטי -->
+    <!-- חלק 1: חיבורי Wi-Fi (מבוסס מקורות) -->
     <section class="topic-section">
-        <h2>חיבור ל-Wi-Fi (אינטרנט אלחוטי)</h2>
-        <p>כאן נלמד איך לחבר את המחשב לרשת הביתית או המשרדית.</p>
-        
+        <h2><i class="fas fa-wifi"></i> רשת אלחוטית (Wi-Fi)</h2>
         <details class="info-card">
-            <summary>מדריך שלב-אחר-שלב לחיבור ראשוני</summary>
+            <summary>איך מתחברים לרשת חדשה?</summary>
             <div class="details-content">
                 <ol>
-                    <li>נביט בפינה של שורת המשימות (ליד השעון) ונחפש את <strong>אייקון הרשת</strong> (גלובוס או פסי קליטה) [2].</li>
-                    <li>נלחץ עליו פעם אחת עם המקש <strong>השמאלי</strong> בעכבר [2].</li>
-                    <li>ברשימה שתיפתח, נבחר את שם הרשת שלנו ונלחץ על <strong>"התחבר" (Connect)</strong> [2].</li>
-                    <li>במידת הצורך, נקליד את הסיסמה ונאשר [2].</li>
+                    <li>לחצו על אייקון הרשת (גלובוס או פסים) בשורת המשימות ליד השעון [1].</li>
+                    <li>בחרו את שם הרשת שלכם מהרשימה ולחצו על <strong>"התחבר"</strong> [1].</li>
+                    <li>הקלידו סיסמה במידת הצורך ואשרו [1].</li>
                 </ol>
-                <div class="tip">
-                    <i class="fas fa-lightbulb"></i> <strong>טיפ:</strong> אם סימנתם "התחבר אוטומטית", המחשב יזכור את הרשת להבא.
-                </div>
             </div>
         </details>
     </section>
 
-    <!-- תת-נושא 2: פתרון בעיות רשת -->
+    <!-- חלק 2: חיבור קווי ונקודה חמה (תוכן נוסף) -->
     <section class="topic-section">
-        <h2>עזרה ראשונה: האינטרנט לא עובד?</h2>
-        <p>לפני שקוראים לטכנאי, כדאי לבדוק את הדברים הבאים:</p>
-
+        <h2><i class="fas fa-network-wired"></i> חיבורים נוספים</h2>
         <details class="info-card">
-            <summary>בדיקת מצב טיסה</summary>
-            <p>לפעמים "מצב טיסה" מופעל בטעות ומנטרל את כל החיבורים. ודאו שאייקון המטוס כבוי בתפריט המהיר.</p>
+            <summary>חיבור קווי (Ethernet)</summary>
+            <p>חיבור ישיר באמצעות כבל מהראוטר למחשב. זהו החיבור היציב והמהיר ביותר, המומלץ למחשבים נייחים או לגיימינג (מידע זה אינו מופיע במקורות ויש לאמתו).</p>
         </details>
-
         <details class="info-card">
-            <summary>איפוס מתאם הרשת (למתקדמים)</summary>
-            <p>אם הרשת מופיעה אך אין גלישה, ניתן לנסות לכבות ולהדליק את ה-Wi-Fi דרך תפריט ההגדרות המהיר.</p>
+            <summary>נקודה חמה ניידת (Hotspot)</summary>
+            <p>ניתן לשתף את האינטרנט של הטלפון הנייד עם המחשב במצבים שבהם אין Wi-Fi זמין (מידע זה אינו מופיע במקורות ויש לאמתו).</p>
         </details>
     </section>
 
-    <!-- תת-נושא 3: ניהול רשתות מוכרות -->
-    <section class="topic-section">
-        <h2>ניהול רשתות שמורות</h2>
-        <p>איך "שוכחים" רשת ישנה או משנים הגדרות פרטיות?</p>
-        
+    <!-- חלק 3: פרק תקלות רשת (בסוף העמוד) -->
+    <section id="network-troubleshooting" class="topic-section" style="border-top: 2px solid var(--primary-color); margin-top: 3rem; padding-top: 2rem;">
+        <h2 style="color: #ef4444;"><i class="fas fa-exclamation-triangle"></i> פתרון בעיות רשת ואינטרנט</h2>
+        <p>כאן תוכלו למצוא פתרונות אם האינטרנט לא עובד כראוי.</p>
+
         <details class="info-card">
-            <summary>הסרת רשת מהזיכרון</summary>
-            <p>נכנסים להגדרות > רשת ואינטרנט > Wi-Fi > "נהל רשתות מוכרות" ובוחרים "שכח" (Forget) על הרשת הרצויה.</p>
+            <summary>הודעת "מחובר ללא אינטרנט" (No Internet)</summary>
+            <p>משמעות הדבר היא שהמחשב מחובר לראוטר, אך הראוטר לא מקבל אינטרנט מהספק. מומלץ לכבות ולהדליק את הראוטר (מידע זה אינו מופיע במקורות ויש לאמתו).</p>
+        </details>
+
+        <details class="info-card">
+            <summary>איפוס הגדרות רשת בווינדוס</summary>
+            <p>אם שום דבר לא עוזר, ניתן להיכנס להגדרות > רשת ואינטרנט > "איפוס רשת" כדי להחזיר את כל הגדרות היצרן (מידע זה אינו מופיע במקורות ויש לאמתו).</p>
         </details>
     </section>
-
 </div>
 
 </body>
